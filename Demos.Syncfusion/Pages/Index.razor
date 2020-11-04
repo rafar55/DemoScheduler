@@ -1,0 +1,20 @@
+﻿@page "/"
+@using Demos.Sf.Models
+
+
+
+<SfSchedule TValue="AppointmentData" StartHour="07:00">
+    <ScheduleEvents TValue="AppointmentData"  ></ScheduleEvents>
+
+    <ScheduleViews>
+        <ScheduleView Option="View.Day"></ScheduleView>
+        <ScheduleView Option="View.Week"></ScheduleView>
+        <ScheduleView Option="View.Month"></ScheduleView>
+    </ScheduleViews>
+    
+    <ScheduleTemplates>
+        
+    </ScheduleTemplates>
+    
+    <ScheduleEventSettings DataSource="_appointmentData"></ScheduleEventSettings>
+</SfSchedule>
