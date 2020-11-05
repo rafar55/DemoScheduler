@@ -2,27 +2,52 @@
 @using Demos.Sf.Models
 
 <style>
+.calendar_view {
+width: 100%;
+height: 100%;
+display: flex;
+}
     .schedule-container {
-        width: 100vw;
-        height: calc(100vh - 56px);
+        height: calc(100vh - 116px);
+    }
+    
+    .calendar_header {
+    width: 100%;
+    height: 60px;
+    }
+    
+    .right_drawer_container {
+    min-height: 100%;
+    width: 279px;
+    min-width: 279px;
+    background-color: darkgrey;
     }
 </style>
 
-
-<div class="schedule-container">
-    <SfSchedule TValue="AppointmentData" StartHour="07:00" Width="100%" Height="100%" ShowHeaderBar="false" CurrentView="View.Month">
-        <ScheduleEvents TValue="AppointmentData"></ScheduleEvents>
-
-        <ScheduleViews>
-            <ScheduleView Option="View.Day"></ScheduleView>
-            <ScheduleView Option="View.Week"></ScheduleView>
-            <ScheduleView Option="View.Month"></ScheduleView>
-        </ScheduleViews>
-
-        <ScheduleTemplates>
-
-        </ScheduleTemplates>
-
-        <ScheduleEventSettings DataSource="_appointmentData"></ScheduleEventSettings>
-    </SfSchedule>
+<div class="calendar_view">
+    <div class="calendar_container">
+        <div class="calendar_header">
+            
+        </div>
+        <div class="schedule-container">
+            <SfSchedule TValue="AppointmentData" StartHour="07:00" Width="100%" Height="100%" ShowHeaderBar="false" CurrentView="View.Month">
+                <ScheduleEvents TValue="AppointmentData"></ScheduleEvents>
+        
+                <ScheduleViews>
+                    <ScheduleView Option="View.Day"></ScheduleView>
+                    <ScheduleView Option="View.Week"></ScheduleView>
+                    <ScheduleView Option="View.Month"></ScheduleView>
+                </ScheduleViews>
+        
+                <ScheduleTemplates>
+        
+                </ScheduleTemplates>
+        
+                <ScheduleEventSettings DataSource="_appointmentData"></ScheduleEventSettings>
+            </SfSchedule>
+        </div>
+    </div>
+    <div class="right_drawer_container">
+        
+    </div>
 </div>
