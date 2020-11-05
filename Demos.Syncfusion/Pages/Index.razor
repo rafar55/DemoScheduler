@@ -1,20 +1,28 @@
 ﻿@page "/"
 @using Demos.Sf.Models
 
+<style>
+    .schedule-container {
+        width: 100vw;
+        height: calc(100vh - 56px);
+    }
+</style>
 
 
-<SfSchedule TValue="AppointmentData" StartHour="07:00">
-    <ScheduleEvents TValue="AppointmentData"  ></ScheduleEvents>
+<div class="schedule-container">
+    <SfSchedule TValue="AppointmentData" StartHour="07:00" Width="100%" Height="100%" ShowHeaderBar="false" CurrentView="View.Month">
+        <ScheduleEvents TValue="AppointmentData"></ScheduleEvents>
 
-    <ScheduleViews>
-        <ScheduleView Option="View.Day"></ScheduleView>
-        <ScheduleView Option="View.Week"></ScheduleView>
-        <ScheduleView Option="View.Month"></ScheduleView>
-    </ScheduleViews>
-    
-    <ScheduleTemplates>
-        
-    </ScheduleTemplates>
-    
-    <ScheduleEventSettings DataSource="_appointmentData"></ScheduleEventSettings>
-</SfSchedule>
+        <ScheduleViews>
+            <ScheduleView Option="View.Day"></ScheduleView>
+            <ScheduleView Option="View.Week"></ScheduleView>
+            <ScheduleView Option="View.Month"></ScheduleView>
+        </ScheduleViews>
+
+        <ScheduleTemplates>
+
+        </ScheduleTemplates>
+
+        <ScheduleEventSettings DataSource="_appointmentData"></ScheduleEventSettings>
+    </SfSchedule>
+</div>
