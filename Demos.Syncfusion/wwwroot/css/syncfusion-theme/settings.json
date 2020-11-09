@@ -1,0 +1,1 @@
+{"theme":"material","properties":"{\"$primary\":\"#3f51b5\",\"$primary-font\":\"rgba(255,255,255,1)\",\"$accent\":\"rgba(72,98,157,0.85)\",\"$accent-font\":\"rgba(194,197,199,1)\"}","components":"[\"comp-calendar\",\"comp-schedule\",\"comp-button\",\"comp-button-group\",\"comp-daterangepicker\"]"}

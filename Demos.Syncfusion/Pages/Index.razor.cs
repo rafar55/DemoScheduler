@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Demos.Sf.Models;
+using Syncfusion.Blazor.Calendars;
 using Syncfusion.Blazor.Schedule;
 
 namespace Demos.Sf.Pages
@@ -24,6 +25,16 @@ namespace Demos.Sf.Pages
                 EndTime = DateTime.Parse("2020-11-5 19:30:00")
             }
         };
+
+        public Index()
+        {
+            DateValue = DateTime.Now;
+        }
+
+        public DateTime? DateValue { get; set; }
+
+
+
 
     }
 }
