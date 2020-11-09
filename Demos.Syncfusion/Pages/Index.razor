@@ -26,28 +26,27 @@ display: flex;
 
 <div class="calendar_view">
     <div class="calendar_container">
-        <div class="calendar_header">
-            
-        </div>
+        <CalendarHeader></CalendarHeader>
+
         <div class="schedule-container">
             <SfSchedule TValue="AppointmentData" StartHour="07:00" Width="100%" Height="100%" ShowHeaderBar="false" CurrentView="View.Month">
                 <ScheduleEvents TValue="AppointmentData"></ScheduleEvents>
-        
+
                 <ScheduleViews>
                     <ScheduleView Option="View.Day"></ScheduleView>
                     <ScheduleView Option="View.Week"></ScheduleView>
                     <ScheduleView Option="View.Month"></ScheduleView>
                 </ScheduleViews>
-        
+
                 <ScheduleTemplates>
-        
+
                 </ScheduleTemplates>
-        
+
                 <ScheduleEventSettings DataSource="_appointmentData"></ScheduleEventSettings>
             </SfSchedule>
         </div>
     </div>
     <div class="right_drawer_container">
-        
+
     </div>
 </div>
