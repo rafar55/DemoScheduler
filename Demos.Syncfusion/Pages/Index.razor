@@ -47,9 +47,8 @@
 
 <div class="calendar_view">
     <div class="calendar_container">
-        <div class="calendar_header">
-            <span>Selected Date: @DateValue.ToString()</span>
-        </div>
+        <CalendarHeader></CalendarHeader>
+
         <div class="schedule-container">
             <SfSchedule TValue="AppointmentData" StartHour="07:00" Width="100%" Height="100%" ShowHeaderBar="false" CurrentView="View.Month">
                 <ScheduleEvents TValue="AppointmentData"></ScheduleEvents>
