@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Demos.Sf.Models
 {
-    public class AppointmentData
+    public class Appointment
     {
         public int Id { get; set; }
         public string Subject { get; set; }

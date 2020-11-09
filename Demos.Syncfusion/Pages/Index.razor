@@ -50,27 +50,35 @@
         <CalendarHeader></CalendarHeader>
 
         <div class="schedule-container">
-            <SfSchedule TValue="AppointmentData" StartHour="07:00" Width="100%" Height="100%" ShowHeaderBar="false" CurrentView="View.Month">
-                <ScheduleEvents TValue="AppointmentData"></ScheduleEvents>
+            <SfSchedule TValue="Appointment" StartHour="07:00" Width="100%" Height="100%" SelectedDate="@SelectedDate" ShowHeaderBar="false" CurrentView="View.Month">
+                <ScheduleEvents TValue="Appointment"></ScheduleEvents>
 
                 <ScheduleViews>
                     <ScheduleView Option="View.Day"></ScheduleView>
                     <ScheduleView Option="View.Week"></ScheduleView>
-                    <ScheduleView Option="View.Month"></ScheduleView>
-                </ScheduleViews>
+                    <ScheduleView Option="View.Month" MaxEventsPerRow="8">
+                        <EventTemplate>
+                            @{
+                                var appointment = (context as Appointment);
+                                <div>
+                                    <p>@appointment.Id</p>
+                                    <p>@appointment.Subject</p>
+                                </div>
+                            }
+                        </EventTemplate>
+                    </ScheduleView>
+                </ScheduleViews>               
 
-                <ScheduleTemplates>
-
-                </ScheduleTemplates>
-
-                <ScheduleEventSettings DataSource="_appointmentData"></ScheduleEventSettings>
+                <ScheduleEventSettings DataSource="AppointmentsData"></ScheduleEventSettings>
             </SfSchedule>
         </div>
     </div>
     <div class="right_drawer_container">
         <div class="date-picker">
-            <SfCalendar TValue="DateTime?" ShowTodayButton="@false" @bind-Value="@DateValue"></SfCalendar>
-            <SfButton CssClass="e-flat" IsPrimary="true" IconCss="e-icons e-play-calendar" IconPosition="@IconPosition.Left">Today</SfButton>
+            <SfCalendar TValue="DateTime" ShowTodayButton="@false" Value="@SelectedDate">
+                <CalendarEvents TValue="DateTime" ValueChange="CalendarValueChanged"></CalendarEvents>
+            </SfCalendar>
+            <SfButton CssClass="e-flat" IsPrimary="true" IconCss="e-icons e-play-calendar" @onclick="() => SelectedDate = DateTime.Now" IconPosition="@IconPosition.Left">Today</SfButton>
         </div>
     </div>
 </div>
