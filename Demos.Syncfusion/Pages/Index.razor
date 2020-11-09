@@ -50,7 +50,7 @@
         <CalendarHeader></CalendarHeader>
 
         <div class="schedule-container">
-            <SfSchedule TValue="Appointment" StartHour="07:00" Width="100%" Height="100%" SelectedDate="@SelectedDate" ShowHeaderBar="false" CurrentView="View.Month">
+            <SfSchedule TValue="Appointment" StartHour="07:00" Width="100%" Height="100%" SelectedDate="@SelectedDate"  ShowHeaderBar="false" CurrentView="View.Month">
                 <ScheduleEvents TValue="Appointment"></ScheduleEvents>
 
                 <ScheduleViews>
@@ -63,6 +63,7 @@
                                 <div>
                                     <p>@appointment.Id</p>
                                     <p>@appointment.Subject</p>
+                                    <p>@appointment.StartTime.ToString("hh:mm tt")</p>
                                 </div>
                             }
                         </EventTemplate>
