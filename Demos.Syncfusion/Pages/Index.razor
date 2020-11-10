@@ -47,10 +47,10 @@
 
 <div class="calendar_view">
     <div class="calendar_container">
-        <CalendarHeader></CalendarHeader>
+        <CalendarHeader OnViewSelected="OnCalendarViewChange"></CalendarHeader>
 
         <div class="schedule-container">
-            <SfSchedule TValue="Appointment" StartHour="07:00" Width="100%" Height="100%" SelectedDate="@SelectedDate"  ShowHeaderBar="false" CurrentView="View.Month">
+            <SfSchedule TValue="Appointment" AllowDragAndDrop="false" AllowResizing="false" StartHour="07:00" Width="100%" Height="100%" ShowHeaderBar="false" SelectedDate="@SelectedDate" CurrentView="@CurrentView"  >
                 <ScheduleEvents TValue="Appointment"></ScheduleEvents>
 
                 <ScheduleViews>

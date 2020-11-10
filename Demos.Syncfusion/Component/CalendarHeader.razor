@@ -15,10 +15,10 @@
         </button>
     </div>
     <div class="right_options">
-        <select class="primary_button">
-            <option value="" disabled>MONTH</option>
-            <option value="">JANUARY</option>
-            <option value="">FEBRUARY</option>
+        <select class="primary_button" @onchange="OnViewSelected">           
+            <option value="@View.Month">Month</option>
+            <option value="@View.Week">Week</option>
+            <option value="@View.Day">Day</option>
         </select>
         <div class="arrows">
             <button class="icon_button arrow_left">
@@ -37,5 +37,6 @@
 </div>
 
 @code {
-
+    [Parameter]
+    public EventCallback<ChangeEventArgs> OnViewSelected { get; set; }
 }
