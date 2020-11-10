@@ -300,6 +300,7 @@ app {
 
 .e-appointment-details .subject_container {
     overflow-x: hidden;
+    overflow-y: hidden;
     flex: 1;
 }
 
