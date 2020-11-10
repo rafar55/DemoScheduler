@@ -43,6 +43,8 @@
     .e-play-calendar::before {
         content: "\e322";
     }
+    
+    
 </style>
 
 <div class="calendar_view">
@@ -60,15 +62,15 @@
                         <EventTemplate>
                             @{
                                 var appointment = (context as Appointment);
-                                <div>
-                                    <p>@appointment.Id</p>
-                                    <p>@appointment.Subject</p>
-                                    <p>@appointment.StartTime.ToString("hh:mm tt")</p>
+                                <div class="circle"></div>
+                                <div class="subject_container">
+                                    <p class="subject">@appointment.Subject</p>
                                 </div>
+                                <p class="date">@appointment.StartTime.ToString("hh:mm tt")</p>
                             }
                         </EventTemplate>
                     </ScheduleView>
-                </ScheduleViews>               
+                </ScheduleViews>
 
                 <ScheduleEventSettings DataSource="AppointmentsData"></ScheduleEventSettings>
             </SfSchedule>
