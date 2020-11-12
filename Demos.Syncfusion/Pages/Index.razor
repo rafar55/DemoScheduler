@@ -52,7 +52,7 @@
         <CalendarHeader OnViewSelected="OnCalendarViewChange"></CalendarHeader>
 
         <div class="schedule-container">
-            <SfSchedule TValue="Appointment" AllowDragAndDrop="false" AllowResizing="false" StartHour="07:00" Width="100%" Height="100%" ShowHeaderBar="false" SelectedDate="@SelectedDate" CurrentView="@CurrentView"  >
+            <SfSchedule  TValue="Appointment" AllowDragAndDrop="false" AllowResizing="false"  Width="100%" Height="100%" ShowHeaderBar="false" @bind-SelectedDate="@SelectedDate" @bind-CurrentView="@CurrentView"  >
                 <ScheduleEvents TValue="Appointment"></ScheduleEvents>
 
                 <ScheduleViews>
@@ -78,7 +78,7 @@
     </div>
     <div class="right_drawer_container">
         <div class="date-picker">
-            <SfCalendar TValue="DateTime" ShowTodayButton="@false" Value="@SelectedDate">
+            <SfCalendar TValue="DateTime" ShowTodayButton="@false" @bind-Value="@SelectedDate">
                 <CalendarEvents TValue="DateTime" ValueChange="CalendarValueChanged"></CalendarEvents>
             </SfCalendar>
             <SfButton CssClass="e-flat" IsPrimary="true" IconCss="e-icons e-play-calendar" @onclick="() => SelectedDate = DateTime.Now" IconPosition="@IconPosition.Left">Today</SfButton>

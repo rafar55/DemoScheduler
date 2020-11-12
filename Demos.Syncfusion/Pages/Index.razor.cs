@@ -45,20 +45,25 @@ namespace Demos.Sf.Pages
 
         public async Task LoadData()
         {
-            if(_allAppointments == null || !_allAppointments.Any()) _allAppointments = await HttpClient.GetFromJsonAsync<List<Appointment>>("sample-data/appointments.json");
+            if (_allAppointments == null || !_allAppointments.Any())
+            {
+                _allAppointments = await HttpClient.GetFromJsonAsync<List<Appointment>>("sample-data/appointments.json");               
+            }
 
 
             var startDate = new DateTime(SelectedDate.Year, SelectedDate.Month, 1).AddDays(-7);
             var endDate = new DateTime(SelectedDate.Year, SelectedDate.Month, DateTime.DaysInMonth(SelectedDate.Year, SelectedDate.Month)).AddDays(7);
 
             AppointmentsData = _allAppointments.Where(x => x.StartTime >= startDate && x.EndTime <= endDate).ToList();
+
+            //AppointmentsData = new List<Appointment>();
         }
 
 
 
-        public async  Task CalendarValueChanged(ChangedEventArgs<DateTime> args)
+        public async Task CalendarValueChanged(ChangedEventArgs<DateTime> args)
         {
-            SelectedDate = args.Value;
+            //SelectedDate = args.Value;
             await LoadData();
         }
 
