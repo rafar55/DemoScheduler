@@ -1,6 +1,7 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Demos.Sf.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Syncfusion.Blazor;
@@ -15,6 +16,7 @@ namespace Demos.Sf
             builder.RootComponents.Add<App>("app");
 
             builder.Services.AddSyncfusionBlazor();
+            builder.Services.AddScoped<BrowserService>();
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 

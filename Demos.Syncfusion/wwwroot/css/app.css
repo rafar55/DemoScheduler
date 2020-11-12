@@ -308,3 +308,14 @@ app {
     background-color: rgba(0,0,0,0) !important;
     border: 0px !important;
 }
+
+@media (max-width: 768px) {
+    .right_drawer_container {
+        display: none;
+    }
+
+    .e-schedule .e-month-view .e-appointment .e-appointment-details {
+        display: none;
+        
+    }
+}
