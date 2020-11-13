@@ -1,6 +1,7 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using BlazorPro.BlazorSize;
 using Demos.Sf.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +18,8 @@ namespace Demos.Sf
 
             builder.Services.AddSyncfusionBlazor();
             builder.Services.AddScoped<BrowserService>();
+
+            builder.Services.AddScoped<ResizeListener>();
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 

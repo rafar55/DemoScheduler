@@ -49,10 +49,11 @@
 
 <div class="calendar_view">
     <div class="calendar_container">
-        <CalendarHeader OnViewSelected="OnCalendarViewChange"></CalendarHeader>
+        <CalendarHeader OnViewSelected="OnCalendarViewChange"></CalendarHeader>      
+
 
         <div class="schedule-container">
-            <SfSchedule  TValue="Appointment" AllowDragAndDrop="false" AllowResizing="false"  Width="100%" Height="100%" ShowHeaderBar="false" @bind-SelectedDate="@SelectedDate" @bind-CurrentView="@CurrentView"  >
+            <SfSchedule TValue="Appointment" AllowDragAndDrop="false" AllowResizing="false" Width="100%" Height="100%" ShowHeaderBar="false" @bind-SelectedDate="@SelectedDate" @bind-CurrentView="@CurrentView">
                 <ScheduleEvents TValue="Appointment"></ScheduleEvents>
 
                 <ScheduleViews>
@@ -66,10 +67,11 @@
                                 <div class="subject_container">
                                     <p class="subject">@appointment.Subject</p>
                                 </div>
-@*                                 <p class="date">@appointment.StartTime.ToString("hh:mm tt")</p> *@
+                                @*                                 <p class="date">@appointment.StartTime.ToString("hh:mm tt")</p> *@
                             }
                         </EventTemplate>
                     </ScheduleView>
+                    <ScheduleView Option="View.MonthAgenda"></ScheduleView>
                 </ScheduleViews>
 
                 <ScheduleEventSettings DataSource="AppointmentsData"></ScheduleEventSettings>
