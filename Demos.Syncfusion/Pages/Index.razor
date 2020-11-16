@@ -1,5 +1,7 @@
 ﻿@page "/"
 @using Demos.Sf.Models
+@using Demos.Sf.Services
+@inject BrowserService Service
 
 <style>
     .calendar_view {
@@ -47,48 +49,85 @@
 @if (_dataLoaded)
 {
 
-    <div class="calendar_view">
-        <div class="calendar_container">
-            <CalendarHeader OnViewSelected="OnCalendarViewChange"></CalendarHeader>
+<div class="calendar_view">
+    <div class="calendar_container">
+        <CalendarHeader OnViewSelected="OnCalendarViewChange"></CalendarHeader>
 
 
             <div class="schedule-container">
                 <SfSchedule TValue="Appointment" AllowDragAndDrop="false" AllowResizing="false" Width="100%" Height="100%" ShowHeaderBar="false" @bind-SelectedDate="@SelectedDate" @bind-CurrentView="@CurrentView">
                     <ScheduleEvents TValue="Appointment" DataBound="OnDataBound"></ScheduleEvents>
 
-                    <ScheduleViews>
-                        <ScheduleView Option="View.Day"></ScheduleView>
-                        <ScheduleView Option="View.Week"></ScheduleView>
-                        <ScheduleView Option="View.Month" MaxEventsPerRow="5">
-                            <EventTemplate>
-                                @{
-                                    var appointment = (context as Appointment);
+                <ScheduleViews>
+                    <ScheduleView Option="View.Day"></ScheduleView>
+                    <ScheduleView Option="View.Week"></ScheduleView>
+                    <ScheduleView Option="View.Month" MaxEventsPerRow="5">
+                        <EventTemplate>
+                            @{
+                                var appointment = (context as Appointment);
+
+                                if (WidthDimention <= 768)
+                                {
+                                    <div class="event_conteiner">
+                                        <div class="circle"></div>
+                                        <p class="date">@appointment.StartTime.ToString("hh:mm tt")</p>
+                                        <div class="subject_container">
+                                            <p class="subject">@appointment.Subject</p>
+                                        </div>
+                                        <p class="room">Room 00</p>
+                                    </div>
+                                    <div>
+                                        <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M4.97317 1.11587L3.8712 0.199951L0 4.86543L3.8712 9.5309L4.97317 8.61498L1.86047 4.86543L4.97317 1.11587ZM4.42218 5.58099H5.85331V4.14986H4.42218V5.58099ZM11.5778 4.14986H10.1467V5.58099H11.5778V4.14986ZM7.28444 5.58099L8.71556 5.58099V4.14986H7.28444V5.58099ZM12.1288 0.199951L11.0268 1.11587L14.1395 4.86543L11.0268 8.61498L12.1288 9.5309L16 4.86543L12.1288 0.199951Z" fill="#15AABF"/>
+                                        </svg>
+                                        <p class="caption">Run on Weekday</p>
+                                    </div>
+                                }
+                                else
+                                {
                                     <div class="circle"></div>
                                     <div class="subject_container">
                                         <p class="subject">@appointment.Subject</p>
                                     </div>
-                                    @*                                 <p class="date">@appointment.StartTime.ToString("hh:mm tt")</p> *@
+                                    <p class="date">@appointment.StartTime.ToString("hh:mm tt")</p>
                                 }
-                            </EventTemplate>
-                        </ScheduleView>
-                        <ScheduleView Option="View.MonthAgenda"></ScheduleView>
-                    </ScheduleViews>
+                            }
+                        </EventTemplate>
+                    </ScheduleView>
+                    <ScheduleView Option="View.MonthAgenda">
+                        <EventTemplate>
+                            @{
+                                var appointment = (context as Appointment);
 
-                    <ScheduleEventSettings DataSource="AppointmentsData"></ScheduleEventSettings>
-                </SfSchedule>
-            </div>
-        </div>
-        <div class="right_drawer_container">
-            <div class="date-picker">
-                <SfCalendar TValue="DateTime" ShowTodayButton="@false" @bind-Value="@SelectedDate">
-                    <CalendarEvents TValue="DateTime" ValueChange="CalendarValueChanged"></CalendarEvents>
-                </SfCalendar>
-                <SfButton CssClass="e-flat" IsPrimary="true" IconCss="e-icons e-play-calendar" @onclick="() => SelectedDate = DateTime.Now" IconPosition="@IconPosition.Left">Today</SfButton>
-            </div>
+                                <div class="event_container">
+                                    <div class="circle"></div>
+                                    <p class="date">@appointment.StartTime.ToString("hh:mm tt")</p>
+                                    <div class="subject_container">
+                                        <p class="subject">@appointment.Subject</p>
+                                    </div>
+                                    <p class="room">Room 00</p>
+                                </div>
+                                <div class="event_container">
+                                    <svg class="caption_icon" width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4.97317 1.11587L3.8712 0.199951L0 4.86543L3.8712 9.5309L4.97317 8.61498L1.86047 4.86543L4.97317 1.11587ZM4.42218 5.58099H5.85331V4.14986H4.42218V5.58099ZM11.5778 4.14986H10.1467V5.58099H11.5778V4.14986ZM7.28444 5.58099L8.71556 5.58099V4.14986H7.28444V5.58099ZM12.1288 0.199951L11.0268 1.11587L14.1395 4.86543L11.0268 8.61498L12.1288 9.5309L16 4.86543L12.1288 0.199951Z" fill="#15AABF"/>
+                                    </svg>
+                                    <p class="caption">Run on Weekday</p>
+                                </div>
+                            }
+                        </EventTemplate>
+                    </ScheduleView>
+                </ScheduleViews>
+
+                <ScheduleEventSettings DataSource="AppointmentsData"></ScheduleEventSettings>
+            </SfSchedule>
         </div>
     </div>
-}
-else
-{
-    <SfSpinner Visible="true" Label="Loading data..."></SfSpinner>
-}
+    <div class="right_drawer_container">
+        <div class="date-picker">
+            <SfCalendar TValue="DateTime" ShowTodayButton="@false" @bind-Value="@SelectedDate">
+                <CalendarEvents TValue="DateTime" ValueChange="CalendarValueChanged"></CalendarEvents>
+            </SfCalendar>
+            <SfButton CssClass="e-flat" IsPrimary="true" IconCss="e-icons e-play-calendar" @onclick="() => SelectedDate = DateTime.Now" IconPosition="@IconPosition.Left">Today</SfButton>
+        </div>
+    </div>
+</div>

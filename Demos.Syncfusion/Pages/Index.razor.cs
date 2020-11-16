@@ -9,13 +9,12 @@ using Demos.Sf.Models;
 using Microsoft.AspNetCore.Components;
 using Syncfusion.Blazor.Calendars;
 using Syncfusion.Blazor.Schedule;
+using Demos.Sf.Services;
 
 namespace Demos.Sf.Pages
 {
     public partial class Index : IDisposable
     {
-
-
 
         private List<Appointment> _allAppointments;
 
@@ -28,6 +27,7 @@ namespace Demos.Sf.Pages
             AppointmentsData = new List<Appointment>();
         }
 
+        [Inject] protected BrowserService _service { get; set; }
 
         [Inject]
         protected HttpClient HttpClient { get; set; }
@@ -38,6 +38,9 @@ namespace Demos.Sf.Pages
         public DateTime SelectedDate { get; set; }
 
         public View CurrentView { get; set; }
+        
+        public int HeightDimention { get; set; }
+        public int WidthDimention { get; set; }
 
         protected List<Appointment> AppointmentsData { get; set; }
 
@@ -47,7 +50,17 @@ namespace Demos.Sf.Pages
             await SelectCalendarView();
             SelectedDate = DateTime.Today;
             await LoadData();
+            await GetDimensions();
+            await base.OnInitializedAsync();
             _dataLoaded = true;
+            
+            
+        }
+        
+        protected  async Task GetDimensions() {
+            var dimension = await Service.GetDimensions();
+            HeightDimention = dimension.Height;
+            WidthDimention = dimension.Width;
         }
 
         protected async override Task OnAfterRenderAsync(bool firstRender)
@@ -79,19 +92,19 @@ namespace Demos.Sf.Pages
 
             if (IsSmallMedia)
             {
-                CurrentView = View.MonthAgenda;               
+                CurrentView = View.MonthAgenda;
             }
             else if(CurrentView == View.MonthAgenda)
             {
-                 CurrentView = View.Month;
+                CurrentView = View.Month;
             }
 
 
-
+                CurrentView = View.MonthAgenda;               
         }
 
         public async Task LoadData()
-        {
+                 CurrentView = View.Month;
             if (_allAppointments == null || !_allAppointments.Any())
             {
                 _allAppointments = await HttpClient.GetFromJsonAsync<List<Appointment>>("sample-data/appointments.json");
