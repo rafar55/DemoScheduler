@@ -19,11 +19,13 @@ namespace Demos.Sf.Pages
 
         private List<Appointment> _allAppointments;
 
+        private bool _dataLoaded = false;
+
 
         public Index()
         {
-            AppointmentsData = new List<Appointment>();
             CurrentView = View.Month;
+            AppointmentsData = new List<Appointment>();
         }
 
 
@@ -42,20 +44,20 @@ namespace Demos.Sf.Pages
 
         protected async override Task OnInitializedAsync()
         {
-            CurrentView = View.Month;
+            await SelectCalendarView();
             SelectedDate = DateTime.Today;
             await LoadData();
-            await base.OnInitializedAsync();
+            _dataLoaded = true;
         }
 
-        protected override Task OnAfterRenderAsync(bool firstRender)
+        protected async override Task OnAfterRenderAsync(bool firstRender)
         {
+            await base.OnAfterRenderAsync(firstRender);
+
             if (firstRender)
             {
                 ResizeListener.OnResized += WindowResized;
             }
-
-            return base.OnAfterRenderAsync(firstRender);
         }
 
 
@@ -64,23 +66,29 @@ namespace Demos.Sf.Pages
             // Get the browsers's width / height
             var browser = window;
 
-            // Check a media query to see if it was matched. We can do this at any time, but it's best to check on each resize
-            var IsSmallMedia = await ResizeListener.MatchMedia(Breakpoints.SmallDown);
+            await SelectCalendarView();
 
+            StateHasChanged();
+
+        }
+
+        private async Task SelectCalendarView()
+        {
+
+            var IsSmallMedia = await ResizeListener.MatchMedia(Breakpoints.SmallDown);
 
             if (IsSmallMedia)
             {
-                CurrentView = View.MonthAgenda;
+                CurrentView = View.MonthAgenda;               
             }
-            else
+            else if(CurrentView == View.MonthAgenda)
             {
-                CurrentView = View.Month;
+                 CurrentView = View.Month;
             }
 
-            // We're outside of the component's lifecycle, be sure to let it know it has to re-render.
-            StateHasChanged();
-        }
 
+
+        }
 
         public async Task LoadData()
         {
@@ -95,11 +103,17 @@ namespace Demos.Sf.Pages
 
             AppointmentsData = _allAppointments.Where(x => x.StartTime >= startDate && x.EndTime <= endDate).ToList();
 
+
+
+
             //AppointmentsData = new List<Appointment>();
         }
 
 
-
+        public async Task OnDataBound(DataBoundEventArgs<Appointment> args)
+        {
+            await SelectCalendarView();
+        }
 
 
 

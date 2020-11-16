@@ -43,47 +43,52 @@
     .e-play-calendar::before {
         content: "\e322";
     }
-    
-    
 </style>
+@if (_dataLoaded)
+{
 
-<div class="calendar_view">
-    <div class="calendar_container">
-        <CalendarHeader OnViewSelected="OnCalendarViewChange"></CalendarHeader>      
+    <div class="calendar_view">
+        <div class="calendar_container">
+            <CalendarHeader OnViewSelected="OnCalendarViewChange"></CalendarHeader>
 
 
-        <div class="schedule-container">
-            <SfSchedule TValue="Appointment" AllowDragAndDrop="false" AllowResizing="false" Width="100%" Height="100%" ShowHeaderBar="false" @bind-SelectedDate="@SelectedDate" @bind-CurrentView="@CurrentView">
-                <ScheduleEvents TValue="Appointment"></ScheduleEvents>
+            <div class="schedule-container">
+                <SfSchedule TValue="Appointment" AllowDragAndDrop="false" AllowResizing="false" Width="100%" Height="100%" ShowHeaderBar="false" @bind-SelectedDate="@SelectedDate" @bind-CurrentView="@CurrentView">
+                    <ScheduleEvents TValue="Appointment" DataBound="OnDataBound"></ScheduleEvents>
 
-                <ScheduleViews>
-                    <ScheduleView Option="View.Day"></ScheduleView>
-                    <ScheduleView Option="View.Week"></ScheduleView>
-                    <ScheduleView Option="View.Month" MaxEventsPerRow="5">
-                        <EventTemplate>
-                            @{
-                                var appointment = (context as Appointment);
-                                <div class="circle"></div>
-                                <div class="subject_container">
-                                    <p class="subject">@appointment.Subject</p>
-                                </div>
-                                @*                                 <p class="date">@appointment.StartTime.ToString("hh:mm tt")</p> *@
-                            }
-                        </EventTemplate>
-                    </ScheduleView>
-                    <ScheduleView Option="View.MonthAgenda"></ScheduleView>
-                </ScheduleViews>
+                    <ScheduleViews>
+                        <ScheduleView Option="View.Day"></ScheduleView>
+                        <ScheduleView Option="View.Week"></ScheduleView>
+                        <ScheduleView Option="View.Month" MaxEventsPerRow="5">
+                            <EventTemplate>
+                                @{
+                                    var appointment = (context as Appointment);
+                                    <div class="circle"></div>
+                                    <div class="subject_container">
+                                        <p class="subject">@appointment.Subject</p>
+                                    </div>
+                                    @*                                 <p class="date">@appointment.StartTime.ToString("hh:mm tt")</p> *@
+                                }
+                            </EventTemplate>
+                        </ScheduleView>
+                        <ScheduleView Option="View.MonthAgenda"></ScheduleView>
+                    </ScheduleViews>
 
-                <ScheduleEventSettings DataSource="AppointmentsData"></ScheduleEventSettings>
-            </SfSchedule>
+                    <ScheduleEventSettings DataSource="AppointmentsData"></ScheduleEventSettings>
+                </SfSchedule>
+            </div>
+        </div>
+        <div class="right_drawer_container">
+            <div class="date-picker">
+                <SfCalendar TValue="DateTime" ShowTodayButton="@false" @bind-Value="@SelectedDate">
+                    <CalendarEvents TValue="DateTime" ValueChange="CalendarValueChanged"></CalendarEvents>
+                </SfCalendar>
+                <SfButton CssClass="e-flat" IsPrimary="true" IconCss="e-icons e-play-calendar" @onclick="() => SelectedDate = DateTime.Now" IconPosition="@IconPosition.Left">Today</SfButton>
+            </div>
         </div>
     </div>
-    <div class="right_drawer_container">
-        <div class="date-picker">
-            <SfCalendar TValue="DateTime" ShowTodayButton="@false" @bind-Value="@SelectedDate">
-                <CalendarEvents TValue="DateTime" ValueChange="CalendarValueChanged"></CalendarEvents>
-            </SfCalendar>
-            <SfButton CssClass="e-flat" IsPrimary="true" IconCss="e-icons e-play-calendar" @onclick="() => SelectedDate = DateTime.Now" IconPosition="@IconPosition.Left">Today</SfButton>
-        </div>
-    </div>
-</div>
+}
+else
+{
+    <SfSpinner Visible="true" Label="Loading data..."></SfSpinner>
+}
