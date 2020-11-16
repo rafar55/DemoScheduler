@@ -19,9 +19,10 @@ else
 }
 
 @code {
+
     public int Height { get; set; }
     public int Width { get; set; }
-
+    
     async Task GetDimensions() {
         var dimension = await Service.GetDimensions();
         Height = dimension.Height;

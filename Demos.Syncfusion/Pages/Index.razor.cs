@@ -9,16 +9,14 @@ using Demos.Sf.Models;
 using Microsoft.AspNetCore.Components;
 using Syncfusion.Blazor.Calendars;
 using Syncfusion.Blazor.Schedule;
+using Demos.Sf.Services;
 
 namespace Demos.Sf.Pages
 {
     public partial class Index : IDisposable
     {
 
-
-
         private List<Appointment> _allAppointments;
-
 
         public Index()
         {
@@ -26,6 +24,7 @@ namespace Demos.Sf.Pages
             CurrentView = View.Month;
         }
 
+        [Inject] protected BrowserService _service { get; set; }
 
         [Inject]
         protected HttpClient HttpClient { get; set; }
@@ -36,6 +35,9 @@ namespace Demos.Sf.Pages
         public DateTime SelectedDate { get; set; }
 
         public View CurrentView { get; set; }
+        
+        public int HeightDimention { get; set; }
+        public int WidthDimention { get; set; }
 
         protected List<Appointment> AppointmentsData { get; set; }
 
@@ -45,7 +47,16 @@ namespace Demos.Sf.Pages
             CurrentView = View.Month;
             SelectedDate = DateTime.Today;
             await LoadData();
+            await GetDimensions();
             await base.OnInitializedAsync();
+            
+            
+        }
+        
+        protected  async Task GetDimensions() {
+            var dimension = await Service.GetDimensions();
+            HeightDimention = dimension.Height;
+            WidthDimention = dimension.Width;
         }
 
         protected override Task OnAfterRenderAsync(bool firstRender)
@@ -70,10 +81,12 @@ namespace Demos.Sf.Pages
 
             if (IsSmallMedia)
             {
+                GetDimensions();
                 CurrentView = View.MonthAgenda;
             }
             else
             {
+                GetDimensions();
                 CurrentView = View.Month;
             }
 
