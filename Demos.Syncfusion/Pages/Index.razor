@@ -46,7 +46,7 @@
         content: "\e322";
     }
 
-    .holiday-cell {        
+    .holiday-cell {
         width: 100%;
         height: 100%;
         background-color: #F1F2F2;
@@ -54,7 +54,7 @@
         position: absolute;
         vertical-align: middle;
         display: flex;
-        flex-direction: column;     
+        flex-direction: column;
         align-items: center;
         justify-content: center;
     }
@@ -81,6 +81,44 @@
         border-radius: unset !important;
         color: #48629D !important;
     }
+
+    /* .e-schedule .e-outer-table > tbody > tr:first-child > td {
+        border-bottom: 2px solid #5d489d;
+    }*/
+
+    .e-time-cells.e-time-slots {
+        vertical-align: top;
+        text-align: right !important;
+        padding-right: 6px;
+    }
+
+    .e-appointment.e-lib.e-draggable {
+        background: #8872fdc9 !important;
+        border: unset !important;
+        border-left: 6px solid #5d489d !important;
+        border-radius: unset !important;
+    }
+
+    .e-schedule .e-vertical-view .e-work-cells {
+        border-style: dashed !important;
+    }
+
+    .e-icons.e-icon-black-sun, .e-icons.e-icon-sun {
+        text-align: left;
+        padding-left: 6px;
+    }
+
+    .e-icon-down-arrow::before {
+        content: '\e744';
+    }
+
+    .e-icon-black-sun::before {
+        content: '\e270';
+    }
+
+    .e-icon-sun::before {
+        content: '\e671';
+    }
 </style>
 
 
@@ -98,7 +136,16 @@
 
 
                 <ScheduleViews>
-                    <ScheduleView Option="View.Day"></ScheduleView>
+                    <ScheduleView Option="View.Day">
+                        <EventTemplate>
+                            @{
+                                var appointment = (context as Appointment);
+                                <div>
+                                    @appointment.Subject
+                                </div>
+                            }
+                        </EventTemplate>
+                    </ScheduleView>
                     <ScheduleView Option="View.Week">
                         <EventTemplate>
                             @{
@@ -175,6 +222,24 @@
                         </EventTemplate>
                     </ScheduleView>
                 </ScheduleViews>
+
+                <ScheduleTimeScale Enable="true" Interval="60">
+                    <MajorSlotTemplate Context="template">
+                        <div>@(majorSlotTemplate(template.Date))</div>
+                        @if (template.Date.Hour == 6)
+                        {
+                            <img src="images/sunrise.svg" />
+                        }
+                        else if (template.Date.Hour == 12)
+                        {
+                            <img src="images/midday.svg" class="e-icons e-icon-sun" />
+                        }
+                        else if (template.Date.Hour == 18)
+                        {
+                            <img src="images/sunset.svg" class="e-icons e-icon-sun" />
+                        }
+                    </MajorSlotTemplate>
+                </ScheduleTimeScale>
 
                 <ScheduleEventSettings AllowAdding="false" AllowEditing="false" AllowEditFollowingEvents="false" AllowDeleting="false" DataSource="AppointmentsData"></ScheduleEventSettings>
             </SfSchedule>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -89,6 +90,11 @@ namespace Demos.Sf.Pages
             {
                 CurrentView = View.Month;
             }
+        }
+
+        public static string majorSlotTemplate(DateTime date)
+        {
+            return date.ToString("hh tt", CultureInfo.InvariantCulture);
         }
 
         public async Task LoadData()
