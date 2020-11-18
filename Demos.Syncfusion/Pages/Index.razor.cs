@@ -18,8 +18,11 @@ namespace Demos.Sf.Pages
 
 
         private List<Appointment> _allAppointments;
+        private List<Holiday> _holidays;
 
         private bool _dataLoaded = false;
+
+        private int[] _workDays = new int[] { 0,1,2,3,4,5,6,7 };
 
 
         public Index()
@@ -95,6 +98,11 @@ namespace Demos.Sf.Pages
                 _allAppointments = await HttpClient.GetFromJsonAsync<List<Appointment>>("sample-data/appointments.json");
             }
 
+            if(_holidays == null || !_holidays.Any())
+            {
+                _holidays = await HttpClient.GetFromJsonAsync<List<Holiday>>("sample-data/holidays.json");
+            }
+
 
             var startDate = new DateTime(SelectedDate.Year, SelectedDate.Month, 1).AddDays(-7);
             var endDate = new DateTime(SelectedDate.Year, SelectedDate.Month, DateTime.DaysInMonth(SelectedDate.Year, SelectedDate.Month)).AddDays(7);
@@ -127,6 +135,14 @@ namespace Demos.Sf.Pages
             CurrentView = (View)Enum.Parse(typeof(View), value);
             await LoadData();
         }
+
+
+        public Holiday GetHoliday(DateTime currentDate)
+        {
+            if (_holidays == null) return null;
+            return _holidays.SingleOrDefault(x => x.Day == currentDate.Day && x.Month == currentDate.Month);
+        }
+
 
         public void Dispose()
         {

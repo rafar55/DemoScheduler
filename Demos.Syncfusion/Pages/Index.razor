@@ -45,6 +45,42 @@
     .e-play-calendar::before {
         content: "\e322";
     }
+
+    .holiday-cell {        
+        width: 100%;
+        height: 100%;
+        background-color: #F1F2F2;
+        text-align: center;
+        position: absolute;
+        vertical-align: middle;
+        display: flex;
+        flex-direction: column;     
+        align-items: center;
+        justify-content: center;
+    }
+
+        .holiday-cell img {
+            width: 25px;
+            height: 25px;
+        }
+
+        .holiday-cell .caption {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            vertical-align: middle;
+        }
+
+    .e-schedule .e-month-view .e-work-cells {
+        position: relative;
+    }
+
+    .e-appointment {
+        background: #E2E6EF !important;
+        border: unset !important;
+        border-left: 6px solid #48629D !important;
+        border-radius: unset !important;
+        color: #48629D !important;
+    }
 </style>
 
 
@@ -54,17 +90,40 @@
 
 
         <div class="schedule-container">
-            <SfSchedule TValue="Appointment" AllowDragAndDrop="false" AllowResizing="false" Width="100%" Height="100%" ShowHeaderBar="false" @bind-SelectedDate="@SelectedDate" @bind-CurrentView="@CurrentView">
+            <SfSchedule TValue="Appointment" WorkDays="@_workDays" AllowDragAndDrop="false" AllowResizing="false" Width="100%" Height="100%" ShowHeaderBar="false" @bind-SelectedDate="@SelectedDate" @bind-CurrentView="@CurrentView">
                 <ScheduleEvents TValue="Appointment" DataBound="OnDataBound"></ScheduleEvents>
+                <ScheduleWorkHours Highlight="true" Start="00:00" End="11:59"></ScheduleWorkHours>
+
+
+
 
                 <ScheduleViews>
                     <ScheduleView Option="View.Day"></ScheduleView>
-                    <ScheduleView Option="View.Week"></ScheduleView>
-                    <ScheduleView Option="View.Month" MaxEventsPerRow="5">
+                    <ScheduleView Option="View.Week">
                         <EventTemplate>
                             @{
                                 var appointment = (context as Appointment);
+                                <div>
+                                    @appointment.Subject
+                                </div>
+                            }
+                        </EventTemplate>
+                    </ScheduleView>
+                    <ScheduleView Option="View.Month" MaxEventsPerRow="5">
+                        <CellTemplate Context="template">
+                            @{ var holiday = GetHoliday(template.Date); }
+                            @if (holiday != null)
+                            {
 
+                                <div class="holiday-cell holiday-background">
+                                    <img src="images/get-together.svg" />
+                                    <div class="caption">@holiday.Name</div>
+                                </div>
+                            }
+                        </CellTemplate>
+                        <EventTemplate>
+                            @{
+                                var appointment = (context as Appointment);
                                 <MediaQuery Media="@Breakpoints.SmallDown">
                                     <Matched>
                                         <div class="event_conteiner">
@@ -89,7 +148,7 @@
                                         </div>
                                         <p class="date">@appointment.StartTime.ToString("hh:mm tt")</p>
                                     </Unmatched>
-                                </MediaQuery>                             
+                                </MediaQuery>
                             }
                         </EventTemplate>
                     </ScheduleView>
@@ -117,7 +176,7 @@
                     </ScheduleView>
                 </ScheduleViews>
 
-                <ScheduleEventSettings DataSource="AppointmentsData"></ScheduleEventSettings>
+                <ScheduleEventSettings AllowAdding="false" AllowEditing="false" AllowEditFollowingEvents="false" AllowDeleting="false" DataSource="AppointmentsData"></ScheduleEventSettings>
             </SfSchedule>
         </div>
     </div>
