@@ -1,4 +1,5 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+@import url('app-mobile.css');
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -309,98 +310,144 @@ app {
     border: 0px !important;
 }
 
-@media (max-width: 768px) {
-    .right_drawer_container {
-        display: none;
-    }
+/*CALENDAR CSS*/
+.calendar_view {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
 
-    .e-schedule .e-month-view .e-appointment .e-appointment-details {
-        display: none;
-        
-    }
-    
-    .calendar_header {
-        display: none;
-    }
+.schedule-container {
+    height: calc(100vh - 116px);
+}
 
-    .e-schedule .e-month-agenda-view .e-appointment {
-        border-left: 0;
-        border-right: 0;
-        cursor: default;
-        padding: 0 8px;
-    }
-    
-    .event_container {
-        display: flex;
-        align-items: center;
-    }
-    
-    .event_container .circle {
-        width: 8px;
-        height: 8px;
-        min-width: 8px;
-        min-height: 8px;
-        background: #82CA1E;
-        border-radius: 4px;
-    }
-    
-    .event_container .date {
-        font-family: Roboto;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 12px;
-        line-height: 14px;
+.calendar_header {
+    height: 60px;
+    width: 100%;
+}
 
-        color: #5E676D;
+.right_drawer_container {
+    background-color: #F1F2F2;
+    min-height: 100%;
+    min-width: 279px;
+    width: 279px;
+}
 
-        margin: 8px 8px;
-    }
-    
-    .event_container .subject_container {
-        flex: 1;
-    }
-    .event_container .subject_container .subject {
-        font-family: Roboto;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 19px;
-        color: #22282F;
-        margin: 8px 0px;
-    }
-    
-    .event_container .room {
-        font-family: Roboto;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 12px;
-        line-height: 14px;
-        /* identical to box height */
+.date-picker {
+    width: 100%;
+}
 
+.date-picker .e-calendar {
+    width: 100%;
+    max-width: 100%;
+    background: transparent;
+    border: none;
+}
 
-        /* Theme / Primary */
+.date-picker .e-calendar .e-content tr.e-month-hide,
+.e-calendar .e-content td.e-other-month > span.e-day {
+    display: block;
+}
 
-        color: #48629D;
-        margin: 8px 0px;
+.e-play-calendar::before {
+    content: "\e322";
+}
 
-    }
-    
-    .event_container .caption_icon {
-        margin-left: 16px;
-    }
-    
-    .event_container .caption {
-        font-family: Roboto;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 12px;
-        line-height: 14px;
-        /* identical to box height */
+.holiday-cell {
+    width: 100%;
+    height: 100%;
+    background-color: #F1F2F2;
+    text-align: center;
+    position: absolute;
+    vertical-align: middle;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.holiday-cell img {
+    width: 25px;
+    height: 25px;
+}
+
+.holiday-cell .caption {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+}
+
+.e-schedule .e-month-view .e-work-cells {
+    position: relative;
+}
 
 
-        /* Schedules / Weekdays */
+/* .e-schedule .e-outer-table > tbody > tr:first-child > td {
+    border-bottom: 2px solid #5d489d;
+}*/
 
-        color: #15AABF;
-        margin: 0px 8px;
-    }
+.e-time-cells.e-time-slots {
+    vertical-align: top;
+    text-align: right !important;
+    padding-right: 6px;
+}
+
+.e-appointment.e-lib.e-draggable {
+    background: #8872fdc9 !important;
+    border: unset !important;
+    border-left: 6px solid #5d489d !important;
+    border-radius: unset !important;
+}
+
+.e-schedule .e-vertical-view .e-work-cells {
+    border-style: dashed !important;
+}
+
+.e-icons.e-icon-black-sun, .e-icons.e-icon-sun {
+    text-align: left;
+    padding-left: 6px;
+}
+
+.e-icon-down-arrow::before {
+    content: '\e744';
+}
+
+.e-icon-black-sun::before {
+    content: '\e270';
+}
+
+.e-icon-sun::before {
+    content: '\e671';
+}
+
+.e-appointment {
+    background: none !important;
+    border: unset !important;
+    border-radius: unset !important;
+    color: unset !important;
+    display: flex;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.e-appointment-details {
+
+}
+
+.custom-event {
+    width: 100%;
+    height: 100%;
+    background: #E2E6EF !important;
+    border: unset !important;
+    border-left: 6px solid #48629D !important;
+    border-radius: unset !important;
+    color: #48629D !important;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.astro-time {
+    background-color: antiquewhite !important;
+    border-left: 6px solid #ff6a00 !important;
 }

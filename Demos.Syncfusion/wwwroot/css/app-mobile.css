@@ -1,0 +1,95 @@
+@media (max-width: 768px) {
+    .right_drawer_container {
+        display: none;
+    }
+
+    .e-schedule .e-month-view .e-appointment .e-appointment-details {
+        display: none;
+
+    }
+
+    .calendar_header {
+        display: none;
+    }
+
+    .e-schedule .e-month-agenda-view .e-appointment {
+        border-left: 0;
+        border-right: 0;
+        cursor: default;
+        padding: 0 8px;
+    }
+
+    .event_container {
+        display: flex;
+        align-items: center;
+    }
+
+    .event_container .circle {
+        width: 8px;
+        height: 8px;
+        min-width: 8px;
+        min-height: 8px;
+        background: #82CA1E;
+        border-radius: 4px;
+    }
+
+    .event_container .date {
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 14px;
+
+        color: #5E676D;
+
+        margin: 8px 8px;
+    }
+
+    .event_container .subject_container {
+        flex: 1;
+    }
+    .event_container .subject_container .subject {
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+        color: #22282F;
+        margin: 8px 0px;
+    }
+
+    .event_container .room {
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 12px;
+        line-height: 14px;
+        /* identical to box height */
+
+
+        /* Theme / Primary */
+
+        color: #48629D;
+        margin: 8px 0px;
+
+    }
+
+    .event_container .caption_icon {
+        margin-left: 16px;
+    }
+
+    .event_container .caption {
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 14px;
+        /* identical to box height */
+
+
+        /* Schedules / Weekdays */
+
+        color: #15AABF;
+        margin: 0px 8px;
+    }
+}
