@@ -123,6 +123,10 @@
         margin: 0 !important;
     }
 
+    .e-appointment-details {
+
+    }
+
     .custom-event {
         width: 100%;
         height: 100%;
@@ -272,7 +276,7 @@
     </div>
     <div class="right_drawer_container">
         <div class="date-picker">
-            <SfCalendar TValue="DateTime" ShowTodayButton="@false" @bind-Value="@SelectedDate">
+            <SfCalendar TValue="DateTime"  ShowTodayButton="@false" @bind-Value="@SelectedDate">
                 <CalendarEvents TValue="DateTime" ValueChange="CalendarValueChanged"></CalendarEvents>
             </SfCalendar>
             <SfButton CssClass="e-flat" IsPrimary="true" IconCss="e-icons e-play-calendar" @onclick="() => SelectedDate = DateTime.Now" IconPosition="@IconPosition.Left">Today</SfButton>
