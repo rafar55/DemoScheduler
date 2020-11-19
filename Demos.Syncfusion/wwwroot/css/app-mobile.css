@@ -92,4 +92,12 @@
         color: #15AABF;
         margin: 0px 8px;
     }
+
+    .e-schedule .e-month-agenda-view .e-wrapper-container {
+        display: none;
+    }
+
+    .schedule-container {
+        height: 232px !important;
+    }
 }
