@@ -1,12 +1,59 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 @import url('app-mobile.css');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+input, input:focus, input:active, input:visited, input:focus-visible, input:focus-within {
+    outline: none;
+}
+
 a, .btn-link {
     color: #0366d6;
+}
+
+::-webkit-input-placeholder { /* Edge */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+
+
+    /* Text / On Light / Secondary */
+
+    color: #C2C5C7;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+
+
+    /* Text / On Light / Secondary */
+
+    color: #C2C5C7;
+}
+
+::placeholder {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+
+
+    /* Text / On Light / Secondary */
+
+    color: #C2C5C7;
 }
 
 .btn-primary {
@@ -52,7 +99,7 @@ app {
 }
 
 .sidebar .top-row {
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .sidebar .navbar-brand {
@@ -89,12 +136,12 @@ app {
 }
 
 .sidebar .nav-item a.active {
-    background-color: rgba(255,255,255,0.25);
+    background-color: rgba(255, 255, 255, 0.25);
     color: white;
 }
 
 .sidebar .nav-item a:hover {
-    background-color: rgba(255,255,255,0.1);
+    background-color: rgba(255, 255, 255, 0.1);
     color: white;
 }
 
@@ -172,7 +219,6 @@ app {
     /*    padding-left: 2rem !important;*/
     /*    padding-right: 1.5rem !important;*/
     /*}*/
-
     .navbar-toggler {
         display: none;
     }
@@ -189,7 +235,7 @@ app {
     display: flex;
 }
 
-.calendar_header>div {
+.calendar_header > div {
     flex: 1;
     display: flex;
     align-items: center;
@@ -198,9 +244,9 @@ app {
 .primary_button {
     margin-right: 23px;
     margin-left: 23px;
-    width: 127px;
+    width: auto;
     height: 36px;
-    background-color: rgba(0,0,0, 0);
+    background-color: rgba(0, 0, 0, 0);
     border: 1px solid #48629D;
     box-sizing: border-box;
     font-family: Roboto;
@@ -228,13 +274,16 @@ app {
     color: #000000;
     margin: 0px;
 }
+
 .right_options {
     flex-direction: row-reverse;
 }
+
 .arrows {
     display: flex;
     margin-left: 16px;
 }
+
 .icon_button {
     height: 24px;
     width: 24px;
@@ -247,6 +296,7 @@ app {
     display: flex;
     align-items: center;
 }
+
 .e-appointment-details {
     background-color: rgba(0, 0, 0, 0) !important;
     border: 0px !important;
@@ -264,7 +314,7 @@ app {
     border-radius: 4px;
 }
 
-.e-appointment-details .date{
+.e-appointment-details .date {
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -306,7 +356,7 @@ app {
 }
 
 .e-schedule .e-month-view .e-appointment, .e-appointment-details {
-    background-color: rgba(0,0,0,0) !important;
+    background-color: rgba(0, 0, 0, 0) !important;
     border: 0px !important;
 }
 
@@ -450,4 +500,78 @@ app {
 .astro-time {
     background-color: antiquewhite !important;
     border-left: 6px solid #ff6a00 !important;
+}
+
+.search_icon {
+    margin-left: 16px;
+}
+
+.search_input {
+    border: 0px;
+    outline: none;
+    flex: 1;
+} 
+
+.drag_button {
+    background: none;
+    border: 0px;
+    outline: none;
+    width: 100%;
+    margin-top: 26px;
+}
+.activity_view {
+    padding: 8px;
+}
+
+.activity_view > .view_title {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 23px;
+
+    /* Text / On Light / Primary */
+
+    color: #22282F;
+    margin-left: 24px;
+}
+
+.activity_view > .start_day {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+
+
+    /* Text / On Light / Secondary */
+
+    color: #C2C5C7;
+    margin-left: 24px;
+    margin-bottom: 0px;
+    margin-top: 8px;
+
+}
+
+.activity_view > .event {
+    margin-left: 40px;
+}
+
+.activity_view > .sunrise {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+
+
+    /* Text / On Light / Secondary */
+
+    color: #C2C5C7;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    align-items: center;
+    display: flex;
 }

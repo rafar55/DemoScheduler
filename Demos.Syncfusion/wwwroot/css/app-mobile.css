@@ -70,7 +70,7 @@
         /* Theme / Primary */
 
         color: #48629D;
-        margin: 8px 0px;
+        margin: 8px;
 
     }
 
@@ -99,5 +99,13 @@
 
     .schedule-container {
         height: 232px !important;
+    }
+
+    .e-schedule .e-month-view .e-date-header-wrap table td, .e-schedule .e-month-agenda-view .e-date-header-wrap table td {
+        border-color: rgba(0, 0, 0, 0);
+    }
+
+    .e-schedule {
+        border: 1px solid rgba(0, 0, 0, 0);
     }
 }

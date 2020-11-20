@@ -1,5 +1,21 @@
-<div class="event">
-    <div>
+<div class="activity_view">
+    <button class="drag_button">
+        @if (collapsedEvent)
+        {
+            <svg width="50" height="6" viewBox="0 0 50 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="50" height="6" rx="3" fill="#C2C5C7"/>
+            </svg>
+        }
+        else
+        {
+            <svg width="50" height="12" viewBox="0 0 50 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 3.70012C0 1.81364 1.76356 0.423255 3.59795 0.863508L21.0223 5.04534C23.637 5.67287 26.363 5.67287 28.9777 5.04534L46.4021 0.863508C48.2364 0.423255 50 1.81364 50 3.70012C50 5.04898 49.0752 6.22194 47.7636 6.53673L30.8343 10.5998C26.9992 11.5202 23.0008 11.5202 19.1657 10.5998L2.23638 6.53673C0.924763 6.22194 0 5.04898 0 3.70012Z" fill="#C2C5C7"/>
+            </svg>
+        }
+    </button>
+    <p class="view_title">July, 08</p>
+    <p class="start_day">6:00 AM</p>
+    <div class="event">
         <div class="event_container">
             <div class="circle"></div>
             @* <p class="date">@appointment.StartTime.ToString("hh:mm tt")</p> *@
@@ -16,7 +32,7 @@
             <p class="caption">Run on Weekday</p>
         </div>
     </div>
-    <div>
+    <div class="event">
         <div class="event_container">
             <div class="circle"></div>
             @* <p class="date">@appointment.StartTime.ToString("hh:mm tt")</p> *@
@@ -33,7 +49,13 @@
             <p class="caption">Run on Weekday</p>
         </div>
     </div>
-    <div>
+    <p class="sunrise">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.6587 14.3413L20 12L17.6587 9.65871V6.34129H14.3413L12 4L9.65871 6.34129H6.34129V9.65871L4 12L6.34129 14.3413V17.6587H9.65871L12 20L14.3413 17.6587H17.6587V14.3413ZM12 16.244C9.65871 16.244 7.75597 14.3413 7.75597 12C7.75597 9.65871 9.65871 7.75597 12 7.75597C14.3413 7.75597 16.244 9.65871 16.244 12C16.244 14.3413 14.3413 16.244 12 16.244Z" fill="#C2C5C7"/>
+        </svg>
+        Sunrise (6.05 PM)
+    </p>
+    <div class="event">
         <div class="event_container">
             <div class="circle"></div>
             @* <p class="date">@appointment.StartTime.ToString("hh:mm tt")</p> *@
@@ -50,9 +72,44 @@
             <p class="caption">Run on Weekday</p>
         </div>
     </div>
+    <div class="event">
+        <div class="event_container">
+            <div class="circle"></div>
+            @* <p class="date">@appointment.StartTime.ToString("hh:mm tt")</p> *@
+            <p class="date">00:00</p>
+            <div class="subject_container">
+                <p class="subject">Light On</p>
+            </div>
+            <p class="room">Room 01</p>
+        </div>
+        <div class="event_container">
+            <svg class="caption_icon" width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4.97317 1.11587L3.8712 0.199951L0 4.86543L3.8712 9.5309L4.97317 8.61498L1.86047 4.86543L4.97317 1.11587ZM4.42218 5.58099H5.85331V4.14986H4.42218V5.58099ZM11.5778 4.14986H10.1467V5.58099H11.5778V4.14986ZM7.28444 5.58099L8.71556 5.58099V4.14986H7.28444V5.58099ZM12.1288 0.199951L11.0268 1.11587L14.1395 4.86543L11.0268 8.61498L12.1288 9.5309L16 4.86543L12.1288 0.199951Z" fill="#15AABF"/>
+            </svg>
+            <p class="caption">Run on Weekday</p>
+        </div>
+    </div>
+    <div class="event">
+            <div class="event_container">
+                <div class="circle"></div>
+                @* <p class="date">@appointment.StartTime.ToString("hh:mm tt")</p> *@
+                <p class="date">00:00</p>
+                <div class="subject_container">
+                    <p class="subject">Light On</p>
+                </div>
+                <p class="room">Room 01</p>
+            </div>
+            <div class="event_container">
+                <svg class="caption_icon" width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4.97317 1.11587L3.8712 0.199951L0 4.86543L3.8712 9.5309L4.97317 8.61498L1.86047 4.86543L4.97317 1.11587ZM4.42218 5.58099H5.85331V4.14986H4.42218V5.58099ZM11.5778 4.14986H10.1467V5.58099H11.5778V4.14986ZM7.28444 5.58099L8.71556 5.58099V4.14986H7.28444V5.58099ZM12.1288 0.199951L11.0268 1.11587L14.1395 4.86543L11.0268 8.61498L12.1288 9.5309L16 4.86543L12.1288 0.199951Z" fill="#15AABF"/>
+                </svg>
+                <p class="caption">Run on Weekday</p>
+            </div>
+        </div>
+    <p class="start_day">8:00 PM</p>
 </div>
 
 
 @code {
-
+    public bool collapsedEvent { get; set; } = true;
 }

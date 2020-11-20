@@ -5,12 +5,7 @@
 
 <div class="calendar_view">
     <div class="calendar_container">
-        <MediaQuery Media="@Breakpoints.SmallDown">
-            <Unmatched>
-                <CalendarHeader OnViewSelected="OnCalendarViewChange"></CalendarHeader>
-            </Unmatched>
-        </MediaQuery>
-
+        <CalendarHeader OnViewSelected="OnCalendarViewChange"></CalendarHeader>
 
         <div class="schedule-container">
             <SfSchedule TValue="Appointment" WorkDays="@_workDays" AllowDragAndDrop="false" AllowResizing="false" Width="100%" Height="100%" ShowHeaderBar="false" @bind-SelectedDate="@SelectedDate" @bind-CurrentView="@CurrentView">
