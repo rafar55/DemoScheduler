@@ -74,13 +74,6 @@
         position: relative;
     }
 
-    .e-appointment {
-        background: #E2E6EF !important;
-        border: unset !important;
-        border-left: 6px solid #48629D !important;
-        border-radius: unset !important;
-        color: #48629D !important;
-    }
 
     /* .e-schedule .e-outer-table > tbody > tr:first-child > td {
         border-bottom: 2px solid #5d489d;
@@ -119,6 +112,34 @@
     .e-icon-sun::before {
         content: '\e671';
     }
+
+    .e-appointment {
+        background: none !important;
+        border: unset !important;        
+        border-radius: unset !important;
+        color: unset !important;
+        display: flex;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .custom-event {
+        width: 100%;
+        height: 100%;
+        background: #E2E6EF !important;
+        border: unset !important;
+        border-left: 6px solid #48629D !important;
+        border-radius: unset !important;
+        color: #48629D !important;
+        overflow-x: hidden;
+        text-overflow: ellipsis;
+    }
+
+
+    .astro-time {        
+        background-color: antiquewhite !important;
+        border-left: 6px solid #ff6a00 !important;
+    }
 </style>
 
 
@@ -140,7 +161,7 @@
                         <EventTemplate>
                             @{
                                 var appointment = (context as Appointment);
-                                <div>
+                                <div class="custom-event">
                                     @appointment.Subject
                                 </div>
                             }
@@ -150,7 +171,11 @@
                         <EventTemplate>
                             @{
                                 var appointment = (context as Appointment);
-                                <div>
+                                <div class="custom-event @(appointment.StartTime.Hour == 12 ? "astro-time" : "")">
+                                    @if (appointment.StartTime.Hour == 12)
+                                    {
+                                        <img src="images/midday.svg" />
+                                    }
                                     @appointment.Subject
                                 </div>
                             }
@@ -223,14 +248,14 @@
                     </ScheduleView>
                 </ScheduleViews>
 
-                <ScheduleTimeScale Enable="true" Interval="60">
+                <ScheduleTimeScale Enable="true" Interval="60" SlotCount="4">
                     <MajorSlotTemplate Context="template">
                         <div>@(majorSlotTemplate(template.Date))</div>
                         @if (template.Date.Hour == 6)
                         {
                             <img src="images/sunrise.svg" />
                         }
-                        else if (template.Date.Hour == 12)
+                        else if (template.Date.Hour == 12 && template.Date.Minute == 45)
                         {
                             <img src="images/midday.svg" class="e-icons e-icon-sun" />
                         }
@@ -241,7 +266,7 @@
                     </MajorSlotTemplate>
                 </ScheduleTimeScale>
 
-                <ScheduleEventSettings AllowAdding="false" AllowEditing="false" AllowEditFollowingEvents="false" AllowDeleting="false" DataSource="AppointmentsData"></ScheduleEventSettings>
+                <ScheduleEventSettings DataSource="AppointmentsData"></ScheduleEventSettings>
             </SfSchedule>
         </div>
     </div>
