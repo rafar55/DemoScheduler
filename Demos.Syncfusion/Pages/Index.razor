@@ -7,107 +7,137 @@
     <div class="calendar_container">
         <CalendarHeader OnViewSelected="OnCalendarViewChange"></CalendarHeader>
 
-        <div class="schedule-container">
-            <SfSchedule TValue="Appointment" WorkDays="@_workDays" AllowDragAndDrop="false" AllowResizing="false" Width="100%" Height="100%" ShowHeaderBar="false" @bind-SelectedDate="@SelectedDate" @bind-CurrentView="@CurrentView">
-                <ScheduleEvents TValue="Appointment" DataBound="OnDataBound"></ScheduleEvents>
-                <ScheduleWorkHours Highlight="true" Start="00:00" End="11:59"></ScheduleWorkHours>
-                <ScheduleViews>
-                    <ScheduleView Option="View.Day">
-                        <EventTemplate>
-                            @{
-                                var appointment = (context as Appointment);
-                                <div class="custom-event">
-                                    @appointment.Subject
-                                </div>
-                            }
-                        </EventTemplate>
-                    </ScheduleView>
-                    <ScheduleView Option="View.Week">
-                        <EventTemplate>
-                            @{
-                                var appointment = (context as Appointment);
-                                <div class="custom-event @(appointment.StartTime.Hour == 12 ? "astro-time" : "")">
-                                    @if (appointment.StartTime.Hour == 12)
-                                    {
-                                        <img src="images/midday.svg"/>
-                                    }
-                                    @appointment.Subject
-                                </div>
-                            }
-                        </EventTemplate>
-                    </ScheduleView>
-                    <ScheduleView Option="View.Month" MaxEventsPerRow="5">
-                        <CellTemplate Context="template">
-                            @{ var holiday = GetHoliday(template.Date); }
-                            @if (holiday != null)
-                            {
-                                <div class="holiday-cell holiday-background">
-                                    <img src="images/get-together.svg"/>
-                                    <div class="caption">@holiday.Name</div>
-                                </div>
-                            }
-                        </CellTemplate>
-                        <EventTemplate>
-                            @{
-                                var appointment = (context as Appointment);
-                                <MediaQuery Media="@Breakpoints.SmallDown">
-                                    <Matched>
-                                        <div class="event_conteiner">
-                                            <div class="circle"></div>
-                                            <p class="date">@appointment.StartTime.ToString("hh:mm tt")</p>
-                                            <div class="subject_container">
-                                                <p class="subject">@appointment.Subject</p>
-                                            </div>
-                                            <p class="room">Room 00</p>
-                                        </div>
-                                        <div>
-                                            <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M4.97317 1.11587L3.8712 0.199951L0 4.86543L3.8712 9.5309L4.97317 8.61498L1.86047 4.86543L4.97317 1.11587ZM4.42218 5.58099H5.85331V4.14986H4.42218V5.58099ZM11.5778 4.14986H10.1467V5.58099H11.5778V4.14986ZM7.28444 5.58099L8.71556 5.58099V4.14986H7.28444V5.58099ZM12.1288 0.199951L11.0268 1.11587L14.1395 4.86543L11.0268 8.61498L12.1288 9.5309L16 4.86543L12.1288 0.199951Z" fill="#15AABF"/>
-                                            </svg>
-                                            <p class="caption">Run on Weekday</p>
-                                        </div>
-                                    </Matched>
-                                    <Unmatched>
-                                        <div class="circle"></div>
-                                        <div class="subject_container">
-                                            <p class="subject">@appointment.Subject</p>
-                                        </div>
-                                        <p class="date">@appointment.StartTime.ToString("hh:mm tt")</p>
-                                    </Unmatched>
-                                </MediaQuery>
-                            }
-                        </EventTemplate>
-                    </ScheduleView>
-                    <ScheduleView Option="View.MonthAgenda">
-                        <EventTemplate>
-
-                        </EventTemplate>
-                    </ScheduleView>
-                </ScheduleViews>
-
-                <ScheduleTimeScale Enable="true" Interval="60" SlotCount="4">
-                    <MajorSlotTemplate Context="template">
-                        <div>@(majorSlotTemplate(template.Date))</div>
-                        @if (template.Date.Hour == 6)
-                        {
-                            <img src="images/sunrise.svg"/>
-                        }
-                        else if (template.Date.Hour == 12 && template.Date.Minute == 45)
-                        {
-                            <img src="images/midday.svg" class="e-icons e-icon-sun"/>
-                        }
-                        else if (template.Date.Hour == 18)
-                        {
-                            <img src="images/sunset.svg" class="e-icons e-icon-sun"/>
-                        }
-                    </MajorSlotTemplate>
-                </ScheduleTimeScale>
-
-                <ScheduleEventSettings DataSource="AppointmentsData"></ScheduleEventSettings>
-            </SfSchedule>
-        </div>
         <MediaQuery Media="@Breakpoints.SmallDown">
+            <Unmatched>
+                <div class="schedule-container">
+                    <SfSchedule TValue="Appointment" WorkDays="@_workDays" AllowDragAndDrop="false" AllowResizing="false" Width="100%" Height="100%" ShowHeaderBar="false" @bind-SelectedDate="@SelectedDate" @bind-CurrentView="@CurrentView">
+                        <ScheduleEvents TValue="Appointment" DataBound="OnDataBound"></ScheduleEvents>
+                        <ScheduleWorkHours Highlight="true" Start="00:00" End="11:59"></ScheduleWorkHours>
+                        <ScheduleViews>
+                            <ScheduleView Option="View.Day">
+                                <EventTemplate>
+                                    @{
+                                        var appointment = (context as Appointment);
+                                        <div class="custom-event">
+                                            @appointment.Subject
+                                        </div>
+                                    }
+                                </EventTemplate>
+                            </ScheduleView>
+                            <ScheduleView Option="View.Week">
+                                <EventTemplate>
+                                    @{
+                                        var appointment = (context as Appointment);
+                                        <div class="custom-event @(appointment.StartTime.Hour == 12 ? "astro-time" : "")">
+                                            @if (appointment.StartTime.Hour == 12)
+                                            {
+                                                <img src="images/midday.svg"/>
+                                            }
+                                            @appointment.Subject
+                                        </div>
+                                    }
+                                </EventTemplate>
+                            </ScheduleView>
+                            <ScheduleView Option="View.Month" MaxEventsPerRow="5">
+                                <CellTemplate Context="template">
+                                    @{ var holiday = GetHoliday(template.Date); }
+                                    @if (holiday != null)
+                                    {
+                                        <div class="holiday-cell holiday-background">
+                                            <img src="images/get-together.svg"/>
+                                            <div class="caption">@holiday.Name</div>
+                                        </div>
+                                    }
+                                </CellTemplate>
+                                <EventTemplate>
+                                    @{
+                                        var appointment = (context as Appointment);
+                                        <MediaQuery Media="@Breakpoints.SmallDown">
+                                            <Matched>
+                                                <div class="event_conteiner">
+                                                    <div class="circle"></div>
+                                                    <p class="date">@appointment.StartTime.ToString("hh:mm tt")</p>
+                                                    <div class="subject_container">
+                                                        <p class="subject">@appointment.Subject</p>
+                                                    </div>
+                                                    <p class="room">Room 00</p>
+                                                </div>
+                                                <div>
+                                                    <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M4.97317 1.11587L3.8712 0.199951L0 4.86543L3.8712 9.5309L4.97317 8.61498L1.86047 4.86543L4.97317 1.11587ZM4.42218 5.58099H5.85331V4.14986H4.42218V5.58099ZM11.5778 4.14986H10.1467V5.58099H11.5778V4.14986ZM7.28444 5.58099L8.71556 5.58099V4.14986H7.28444V5.58099ZM12.1288 0.199951L11.0268 1.11587L14.1395 4.86543L11.0268 8.61498L12.1288 9.5309L16 4.86543L12.1288 0.199951Z" fill="#15AABF"/>
+                                                    </svg>
+                                                    <p class="caption">Run on Weekday</p>
+                                                </div>
+                                            </Matched>
+                                            <Unmatched>
+                                                <div class="circle"></div>
+                                                <div class="subject_container">
+                                                    <p class="subject">@appointment.Subject</p>
+                                                </div>
+                                                <p class="date">@appointment.StartTime.ToString("hh:mm tt")</p>
+                                            </Unmatched>
+                                        </MediaQuery>
+                                    }
+                                </EventTemplate>
+                            </ScheduleView>
+                            <ScheduleView Option="View.MonthAgenda">
+                                <EventTemplate>
+
+                                </EventTemplate>
+                            </ScheduleView>
+                        </ScheduleViews>
+
+                        <ScheduleTimeScale Enable="true" Interval="60" SlotCount="4">
+                            <MajorSlotTemplate Context="template">
+                                <div>@(majorSlotTemplate(template.Date))</div>
+                                @if (template.Date.Hour == 6)
+                                {
+                                    <img src="images/sunrise.svg"/>
+                                }
+                                else if (template.Date.Hour == 12 && template.Date.Minute == 45)
+                                {
+                                    <img src="images/midday.svg" class="e-icons e-icon-sun"/>
+                                }
+                                else if (template.Date.Hour == 18)
+                                {
+                                    <img src="images/sunset.svg" class="e-icons e-icon-sun"/>
+                                }
+                            </MajorSlotTemplate>
+                        </ScheduleTimeScale>
+
+                        <ScheduleEventSettings DataSource="AppointmentsData"></ScheduleEventSettings>
+                    </SfSchedule>
+                </div>
+            </Unmatched>
             <Matched>
+                <div class="schedule-container">
+                    <SfSchedule TValue="Appointment" WorkDays="@_workDays" AllowDragAndDrop="false" AllowResizing="false" Width="100%" Height="100%" ShowHeaderBar="false" @bind-SelectedDate="@SelectedDate" @bind-CurrentView="@CurrentView">
+                        <ScheduleViews>
+                            <ScheduleView Option="View.Month" MaxEventsPerRow="1">
+                                <EventTemplate>
+                                    @{
+                                        var appointment =
+                                            context as Appointment;
+
+                                        var count = AppointmentsData.Count(x => x.StartTime.Day == appointment.StartTime.Day && x.StartTime.Month == appointment.StartTime.Month && x.StartTime.Year == appointment.StartTime.Year);
+                                        <div class="circle_container">
+                                            @for (int i = 0; i <= count; i++)
+                                            {
+                                                if (i <= 5)
+                                                {
+                                                    <div class="circle"></div>
+                                                }
+                                            }
+                                        </div>
+
+                                    }
+                                </EventTemplate>
+                            </ScheduleView>
+                        </ScheduleViews>
+
+                        <ScheduleEventSettings DataSource="AppointmentsData"></ScheduleEventSettings>
+                    </SfSchedule>
+                </div>
                 <ActivityView></ActivityView>
             </Matched>
         </MediaQuery>

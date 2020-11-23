@@ -108,4 +108,20 @@
     .e-schedule {
         border: 1px solid rgba(0, 0, 0, 0);
     }
+    
+    .circle_container{
+        display: flex;
+    }
+    
+    .circle_container .circle {
+        min-height: 6px;
+        min-width: 6px;
+        margin: 1px;
+        background-color: #28a745;
+        border-radius: 3px;
+    }
+
+    .e-schedule .e-month-view .e-appointment .e-appointment-details {
+        display: block;
+    }
 }
