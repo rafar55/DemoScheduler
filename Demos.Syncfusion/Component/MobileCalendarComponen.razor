@@ -1,5 +1,47 @@
-<h3>MobileCalendarComponen</h3>
+@using Demos.Sf.Models
+@using Demos.Sf.Services
+<div class="schedule-container">
+    <SfSchedule TValue="Appointment" WorkDays="@_workDays" AllowDragAndDrop="false" AllowResizing="false" Width="100%" Height="100%" ShowHeaderBar="false" @bind-SelectedDate="@SelectedDate" CurrentView="View.Month">
+        <ScheduleViews>
+            <ScheduleView Option="View.Month" MaxEventsPerRow="1">
+                <EventTemplate>
+                    @{
+                        var appointment =
+                            context as Appointment;
+
+                        var count = AppointmentsData.Count(x => x.StartTime.Day == appointment.StartTime.Day && x.StartTime.Month == appointment.StartTime.Month && x.StartTime.Year == appointment.StartTime.Year);
+                        <div class="circle_container">
+                            @for (int i = 0; i <= count; i++)
+                            {
+                                if (i <= 5)
+                                {
+                                    <div class="circle"></div>
+                                }
+                            }
+                        </div>
+
+                    }
+                </EventTemplate>
+            </ScheduleView>
+        </ScheduleViews>
+
+        <ScheduleEventSettings DataSource="AppointmentsData"></ScheduleEventSettings>
+    </SfSchedule>
+</div>
+<ActivityView></ActivityView>
+
 
 @code {
-    
+    private int[] _workDays = new int[] { 0, 1, 2, 3, 4, 5, 6, 7 };
+
+
+    [Parameter]
+    public DateTime SelectedDate { get; set; }
+ 
+
+    [Parameter]
+    public List<Appointment> AppointmentsData { get; set; }
+
+    [Parameter]
+    public List<Holiday> Holidays { get; set; }
 }

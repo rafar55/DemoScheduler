@@ -23,9 +23,6 @@ namespace Demos.Sf.Pages
 
         private bool _dataLoaded = false;
 
-        private int[] _workDays = new int[] { 0,1,2,3,4,5,6,7 };
-
-
         public Index()
         {
             CurrentView = View.Month;
@@ -44,6 +41,7 @@ namespace Demos.Sf.Pages
         public View CurrentView { get; set; }
 
         protected List<Appointment> AppointmentsData { get; set; }
+
 
 
         protected async override Task OnInitializedAsync()
