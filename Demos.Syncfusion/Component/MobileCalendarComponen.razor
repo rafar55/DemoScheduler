@@ -2,6 +2,7 @@
 @using Demos.Sf.Services
 <div class="schedule-container">
     <SfSchedule TValue="Appointment" WorkDays="@_workDays" AllowDragAndDrop="false" AllowResizing="false" Width="100%" Height="100%" ShowHeaderBar="false" @bind-SelectedDate="@SelectedDate" CurrentView="View.Month">
+        <ScheduleEvents TValue="Appointment" OnCellClick="OnCellClick" OnEventClick="OnEventClick" Navigating="OnNavigating" MoreEventsClicked="OnMoreEventsClick"></ScheduleEvents>
         <ScheduleViews>
             <ScheduleView Option="View.Month" MaxEventsPerRow="1">
                 <EventTemplate>
@@ -28,7 +29,7 @@
         <ScheduleEventSettings DataSource="AppointmentsData"></ScheduleEventSettings>
     </SfSchedule>
 </div>
-<ActivityView></ActivityView>
+<ActivityView SelectedDate="@SelectedDate" Appointments="AppointmentsData"></ActivityView>
 
 
 @code {
@@ -37,11 +38,39 @@
 
     [Parameter]
     public DateTime SelectedDate { get; set; }
- 
+
 
     [Parameter]
     public List<Appointment> AppointmentsData { get; set; }
 
     [Parameter]
     public List<Holiday> Holidays { get; set; }
+
+    public async Task OnCellClick(CellClickEventArgs args)
+    {
+        args.Cancel = true;
+        SelectedDate = args.StartTime;
+    }
+
+    public async Task OnEventClick(EventClickArgs<Appointment> args)
+    {
+        args.Cancel = true;
+        SelectedDate = args.Event.StartTime.Date;
+
+    }
+
+    public void OnMoreEventsClick(MoreEventsClickArgs args)
+    {
+        args.Cancel = true;
+        SelectedDate = args.StartTime;
+    }
+
+    public void OnNavigating(NavigatingEventArgs args)
+    {
+        if (args.Action == "date")
+        {
+            args.Cancel = true;   //To prevent date navigation
+            SelectedDate = args.CurrentDate;
+        }
+    }
 }
