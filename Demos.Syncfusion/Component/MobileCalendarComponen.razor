@@ -12,15 +12,18 @@
 
                         var count = AppointmentsData.Count(x => x.StartTime.Day == appointment.StartTime.Day && x.StartTime.Month == appointment.StartTime.Month && x.StartTime.Year == appointment.StartTime.Year);
                         <div class="circle_container">
-                            @for (int i = 0; i <= count; i++)
+                            @for (int i = 1; i <= count; i++)
                             {
-                                if (i <= 5)
+                                if (i <= 4)
                                 {
                                     <div class="circle"></div>
                                 }
                             }
                         </div>
-
+                        if (count > 4)
+                        {
+                            <p class="more_items">@(count - 4) more</p>
+                        }
                     }
                 </EventTemplate>
             </ScheduleView>
