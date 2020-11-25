@@ -1,127 +1,240 @@
 @media (max-width: 768px) {
-    .right_drawer_container {
-        display: none;
-    }
+  .right_drawer_container {
+    display: none;
+  }
 
-    .e-schedule .e-month-view .e-appointment .e-appointment-details {
-        display: none;
+  .e-schedule .e-month-view .e-appointment .e-appointment-details {
+    display: none;
+  }
 
-    }
+  .calendar_header {
+    display: none;
+  }
 
-    .calendar_header {
-        display: none;
-    }
+  .e-schedule .e-month-agenda-view .e-appointment {
+    border-left: 0;
+    border-right: 0;
+    cursor: default;
+    padding: 0 8px;
+  }
 
-    .e-schedule .e-month-agenda-view .e-appointment {
-        border-left: 0;
-        border-right: 0;
-        cursor: default;
-        padding: 0 8px;
-    }
+  .event_container {
+    display: flex;
+    align-items: center;
+  }
 
-    .event_container {
-        display: flex;
-        align-items: center;
-    }
+  .event_container .circle {
+    width: 8px;
+    height: 8px;
+    min-width: 8px;
+    min-height: 8px;
+    background: #82ca1e;
+    border-radius: 4px;
+  }
 
-    .event_container .circle {
-        width: 8px;
-        height: 8px;
-        min-width: 8px;
-        min-height: 8px;
-        background: #82CA1E;
-        border-radius: 4px;
-    }
+  .event_container .date {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
 
-    .event_container .date {
-        font-family: Roboto;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 12px;
-        line-height: 14px;
+    color: #5e676d;
 
-        color: #5E676D;
+    margin: 8px 8px;
+  }
 
-        margin: 8px 8px;
-    }
+  .event_container .subject_container {
+    flex: 1;
+  }
+  .event_container .subject_container .subject {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    color: #22282f;
+    margin: 8px 0px;
+  }
 
-    .event_container .subject_container {
-        flex: 1;
-    }
-    .event_container .subject_container .subject {
-        font-family: Roboto;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 19px;
-        color: #22282F;
-        margin: 8px 0px;
-    }
+  .event_container .room {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
 
-    .event_container .room {
-        font-family: Roboto;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 12px;
-        line-height: 14px;
-        /* identical to box height */
+    /* Theme / Primary */
 
+    color: #48629d;
+    margin: 8px;
+  }
 
-        /* Theme / Primary */
+  .event_container .caption_icon {
+    margin-left: 16px;
+  }
 
-        color: #48629D;
-        margin: 8px;
+  .event_container .caption {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
 
-    }
+    /* Schedules / Weekdays */
 
-    .event_container .caption_icon {
-        margin-left: 16px;
-    }
+    color: #15aabf;
+    margin: 0px 8px;
+  }
 
-    .event_container .caption {
-        font-family: Roboto;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 12px;
-        line-height: 14px;
-        /* identical to box height */
+  .e-schedule .e-month-agenda-view .e-wrapper-container {
+    display: none;
+  }
 
+  .schedule-container {
+    height: auto !important;
+  }
 
-        /* Schedules / Weekdays */
+  .e-schedule .e-month-view .e-date-header-wrap table td,
+  .e-schedule .e-month-agenda-view .e-date-header-wrap table td {
+    border-color: rgba(0, 0, 0, 0);
+  }
 
-        color: #15AABF;
-        margin: 0px 8px;
-    }
+  .e-schedule {
+    border: 1px solid rgba(0, 0, 0, 0);
+  }
 
-    .e-schedule .e-month-agenda-view .e-wrapper-container {
-        display: none;
-    }
+  .circle_container {
+    display: flex;
+  }
 
-    .schedule-container {
-        height: 232px !important;
-    }
+  .circle_container .circle {
+    min-height: 6px;
+    min-width: 6px;
+    margin: 1px;
+    background-color: #28a745;
+    border-radius: 3px;
+  }
 
-    .e-schedule .e-month-view .e-date-header-wrap table td, .e-schedule .e-month-agenda-view .e-date-header-wrap table td {
-        border-color: rgba(0, 0, 0, 0);
-    }
+  .e-schedule .e-month-view .e-appointment .e-appointment-details {
+    display: block;
+  }
 
-    .e-schedule {
-        border: 1px solid rgba(0, 0, 0, 0);
-    }
-    
-    .circle_container{
-        display: flex;
-    }
-    
-    .circle_container .circle {
-        min-height: 6px;
-        min-width: 6px;
-        margin: 1px;
-        background-color: #28a745;
-        border-radius: 3px;
-    }
+  .e-schedule.e-device .e-month-view .e-content-wrap,
+  .e-schedule.e-device .e-timeline-view .e-content-wrap,
+  .e-schedule.e-device .e-timeline-month-view .e-content-wrap {
+    height: 353px;
+  }
 
-    .e-schedule .e-month-view .e-appointment .e-appointment-details {
-        display: block;
-    }
+  .e-schedule .e-month-view .e-date-header-wrap table td,
+  .e-schedule .e-month-agenda-view .e-date-header-wrap table td {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height*/
+    color: #5e676d;
+    text-align: center;
+  }
+
+  .e-schedule .e-month-view .e-date-header-wrap table td span,
+  .e-schedule .e-month-agenda-view .e-date-header-wrap table td span {
+    display: block;
+    visibility: hidden;
+  }
+
+  .e-schedule .e-month-view .e-date-header-wrap table td span::first-letter,
+  .e-schedule
+    .e-month-agenda-view
+    .e-date-header-wrap
+    table
+    td
+    span::first-letter {
+    visibility: visible;
+    text-align: center;
+  }
+
+  .e-schedule .e-month-view .e-date-header-wrap table td:first-child,
+  .e-schedule .e-month-view .e-date-header-wrap table td:last-child {
+    /* Text / On Light / Secondary */
+
+    color: #c2c5c7 !important;
+  }
+
+  .e-schedule .e-month-view .e-date-header-wrap table td.e-current-day,
+  .e-schedule .e-month-agenda-view .e-date-header-wrap table td.e-current-day {
+    color: #48629d;
+  }
+
+  .e-schedule .e-month-view .e-work-cells,
+  .e-schedule .e-month-agenda-view .e-work-cells {
+    border: 0px;
+  }
+
+  .e-schedule .e-month-view .e-more-indicator {
+    display: none;
+  }
+
+  .e-schedule .e-month-view .e-date-header {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+
+    /* Text / On Light / Primary */
+    mix-blend-mode: normal;
+    margin-left: 6px;
+  }
+
+  .e-schedule .e-month-view .e-current-date .e-date-header,
+  .e-schedule .e-month-agenda-view .e-current-date .e-date-header {
+    background-color: rgba(72, 98, 157, 0.85);
+    border-radius: 50%;
+    color: #ffffff;
+    width: 20px;
+    padding-top: 3px;
+    text-align: center;
+    margin-top: -0px;
+    position: relative;
+  }
+
+  .e-schedule .e-month-view .e-other-month,
+  .e-schedule .e-month-agenda-view .e-other-month {
+    color: #c2c5c7 !important;
+  }
+
+  .e-schedule .e-month-view .e-work-cells,
+  .e-schedule .e-month-agenda-view .e-work-cells {
+    color: #22282f;
+  }
+
+  .e-schedule .e-month-view .e-appointment.e-appointment-border,
+  .e-schedule .e-month-view .e-appointment:focus {
+    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.14), 0 0px 0px 0 rgba(0, 0, 0, 0.12),
+      0 0px 0px 0px rgba(0, 0, 0, 0.2);
+  }
+
+  .e-schedule .e-month-view .e-appointment,
+  .e-appointment-details {
+    height: 39px;
+  }
+
+  .more_items {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 12px;
+    /* identical to box height */
+
+    /* Theme / Primary */
+
+    color: #48629d;
+    margin-top: 12px;
+  }
 }
