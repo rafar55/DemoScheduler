@@ -2,7 +2,9 @@
 @using Demos.Sf.Services
 @using System.Globalization;
 
+
 <div class="schedule-container">
+
     <SfSchedule TValue="Appointment" WorkDays="@_workDays" AllowDragAndDrop="false" AllowResizing="false" Width="100%" Height="100%" ShowHeaderBar="false" @bind-SelectedDate="@SelectedDate" @bind-CurrentView="@CurrentView">
         <ScheduleEvents TValue="Appointment"></ScheduleEvents>
         <ScheduleWorkHours Highlight="true" Start="00:00" End="11:59"></ScheduleWorkHours>

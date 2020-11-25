@@ -8,7 +8,6 @@
     <div class="calendar_view">
         <div class="calendar_container">
             <CalendarHeader OnViewSelected="OnCalendarViewChange"></CalendarHeader>
-
             <MediaQuery Media="@Breakpoints.SmallDown">
                 <Unmatched>
                     <CalendarComponent AppointmentsData="AppointmentsData" Holidays="_holidays" CurrentView="@CurrentView" SelectedDate="@SelectedDate"></CalendarComponent>
