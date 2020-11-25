@@ -200,7 +200,7 @@
     padding-top: 3px;
     text-align: center;
     margin-top: -0px;
-    position: fixed;
+    position: relative;
   }
 
   .e-schedule .e-month-view .e-other-month,
