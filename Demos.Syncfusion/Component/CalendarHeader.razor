@@ -17,25 +17,13 @@
                 </button>
             </div>
             <div class="right_options">
+               <AstroLegend></AstroLegend>
                 <select class="primary_button" @onchange="OnViewSelected">
                     <option value="@View.Month">Month</option>
                     <option value="@View.Week">Week</option>
                     <option value="@View.Day">Day</option>
                     <option value="@View.MonthAgenda">Mobile</option>
-                </select>
-                <div class="arrows">
-                    @*<button class="icon_button arrow_left">
-                            <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9.94 1.88L3.83333 8L9.94 14.12L8.06 16L0.0599976 8L8.06 0L9.94 1.88Z" fill="#22282F"/>
-                            </svg>
-                        </button>
-                        <button class="icon_button arrow_right">
-                            <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0 14.12L6.18084 8L0 1.88L1.90283 0L10 8L1.90283 16L0 14.12Z" fill="#22282F"/>
-                            </svg>
-                        </button>*@
-                </div>
-                @*<p class="date_text">february 2020</p>*@
+                </select>                
             </div>
         </Unmatched>
         <Matched>

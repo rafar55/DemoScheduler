@@ -1,0 +1,20 @@
+﻿.astro-legend {
+    display: flex;
+    padding-right: 32px;
+}
+
+    .astro-legend .astro-legend-item {
+        text-align: center;
+        padding-left: 16px;
+    }
+
+        .astro-legend .astro-legend-item:first-child {
+            padding-left: 0px;
+        }
+
+        .astro-legend .astro-legend-item p {
+            font-size: 10px;
+            line-height: 12px;
+            font-style: normal;
+            font-weight: normal;
+        }

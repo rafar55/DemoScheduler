@@ -3,6 +3,53 @@
 @using System.Globalization;
 
 
+<style>
+    .month-day-header {
+        width: 100%;
+        height: 100%;
+        margin: auto auto;
+        padding: 2px 4px;
+       
+    }
+
+        .month-day-header span.currentdate {
+            background-color: #48629D;
+            border-radius: 50%;
+            color: white;
+            padding: 4px;
+        }
+
+        .month-day-header span {
+            top: 50%;
+        }
+
+    .holiday {
+        background-color: #5E676D;
+        color: white;
+    }
+
+    .e-schedule .e-month-view .e-date-header {
+        margin: 0;
+        width: 100%;
+        text-align: unset;
+        padding: 0;
+      
+    }
+
+    .e-schedule .e-month-view .e-current-date .e-date-header {
+        width: 100%;
+        border-radius: unset;
+        background-color: unset;
+        color: unset;
+    }
+
+
+    .e-schedule .e-month-view .e-work-cells {
+        padding: 0px;
+    }
+</style>
+
+
 <div class="schedule-container">
 
     <SfSchedule TValue="Appointment" WorkDays="@_workDays" AllowDragAndDrop="false" AllowResizing="false" Width="100%" Height="100%" ShowHeaderBar="false" @bind-SelectedDate="@SelectedDate" @bind-CurrentView="@CurrentView">
@@ -34,16 +81,14 @@
                 </EventTemplate>
             </ScheduleView>
             <ScheduleView Option="View.Month" MaxEventsPerRow="5">
-                <CellTemplate Context="template">
+                <CellHeaderTemplate Context="template">
                     @{ var holiday = GetHoliday(template.Date); }
-                    @if (holiday != null)
-                    {
-                        <div class="holiday-cell holiday-background">
-                            <img src="images/get-together.svg" />
-                            <div class="caption">@holiday.Name</div>
-                        </div>
-                    }
-                </CellTemplate>
+                    <div class="month-day-header @(holiday != null ? "holiday": "")">
+                        <span class="@(template.Date == DateTime.Now.Date ? "currentdate" : "")" >@template.Date.Day</span>
+                        <span>@holiday?.Name</span>
+                    </div>
+                </CellHeaderTemplate>
+
                 <EventTemplate>
                     @{
                         var appointment = (context as Appointment);
@@ -75,30 +120,9 @@
                     }
                 </EventTemplate>
             </ScheduleView>
-            <ScheduleView Option="View.MonthAgenda">
-                <EventTemplate>
-
-                </EventTemplate>
-            </ScheduleView>
         </ScheduleViews>
 
-        <ScheduleTimeScale Enable="true" Interval="60" SlotCount="4">
-            <MajorSlotTemplate Context="template">
-                <div>@(majorSlotTemplate(template.Date))</div>
-                @if (template.Date.Hour == 6)
-                {
-                    <img src="images/sunrise.svg" />
-                }
-                else if (template.Date.Hour == 12 && template.Date.Minute == 45)
-                {
-                    <img src="images/midday.svg" class="e-icons e-icon-sun" />
-                }
-                else if (template.Date.Hour == 18)
-                {
-                    <img src="images/sunset.svg" class="e-icons e-icon-sun" />
-                }
-            </MajorSlotTemplate>
-        </ScheduleTimeScale>
+        <ScheduleTimeScale Enable="true" Interval="60" SlotCount="4"></ScheduleTimeScale>
 
         <ScheduleEventSettings DataSource="AppointmentsData"></ScheduleEventSettings>
     </SfSchedule>
@@ -130,8 +154,5 @@
         return Holidays.SingleOrDefault(x => x.Day == currentDate.Day && x.Month == currentDate.Month);
     }
 
-    public static string majorSlotTemplate(DateTime date)
-    {
-        return date.ToString("hh tt", CultureInfo.InvariantCulture);
-    }
+
 }
