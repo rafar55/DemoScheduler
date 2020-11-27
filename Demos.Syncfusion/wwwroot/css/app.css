@@ -346,29 +346,6 @@ app {
   content: "\e322";
 }
 
-.holiday-cell {
-  width: 100%;
-  height: 100%;
-  background-color: #f1f2f2;
-  text-align: center;
-  position: absolute;
-  vertical-align: middle;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.holiday-cell img {
-  width: 25px;
-  height: 25px;
-}
-
-.holiday-cell .caption {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  vertical-align: middle;
-}
 
 .e-schedule .e-month-view .e-work-cells {
   position: relative;
@@ -413,35 +390,7 @@ app {
   content: "\e671";
 }
 
-.e-appointment {
-  background: none !important;
-  border: unset !important;
-  border-radius: unset !important;
-  color: unset !important;
-  display: flex;
-  padding: 0 !important;
-  margin: 0 !important;
-}
 
-.e-appointment-details {
-}
-
-.custom-event {
-  width: 100%;
-  height: 100%;
-  background: #e2e6ef !important;
-  border: unset !important;
-  border-left: 6px solid #48629d !important;
-  border-radius: unset !important;
-  color: #48629d !important;
-  overflow-x: hidden;
-  text-overflow: ellipsis;
-}
-
-.astro-time {
-  background-color: antiquewhite !important;
-  border-left: 6px solid #ff6a00 !important;
-}
 
 .search_icon {
   margin-left: 16px;

@@ -9,7 +9,6 @@
         height: 100%;
         margin: auto auto;
         padding: 2px 4px;
-       
     }
 
         .month-day-header span.currentdate {
@@ -33,7 +32,6 @@
         width: 100%;
         text-align: unset;
         padding: 0;
-      
     }
 
     .e-schedule .e-month-view .e-current-date .e-date-header {
@@ -44,9 +42,84 @@
     }
 
 
-    .e-schedule .e-month-view .e-work-cells {
+    .e-schedule .e-vertical-view .e-header-cells {
         padding: 0px;
     }
+
+    .header-template {
+        margin: 0;
+        height: 100%;
+    }
+
+        .header-template .day-block {
+            margin-bottom: 12px;
+            padding: 4px 12px 0px 12px;
+        }
+
+        .header-template .info-block {
+            padding: 0px 12px 4px 12px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+    .e-appointment {
+        background: none !important;
+        border: unset !important;
+        border-radius: unset !important;
+        color: unset !important;
+        display: flex;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+
+        .e-appointment .custom-event {
+            width: 100%;
+            height: 100%;
+            background: #e2e6ef !important;
+            border: unset !important;
+            border-left: 6px solid #48629d !important;
+            border-radius: unset !important;
+            color: #48629d !important;
+            overflow-x: hidden;
+            text-overflow: ellipsis;
+            display: flex;
+            align-items: center;
+            padding-left: 2px;
+        }
+
+        .e-appointment .e-appointment-details {
+            flex: unset !important;
+            padding: 0 !important;
+            width: 100%;
+        }
+
+        .e-appointment .custom-event img {
+            margin-right: 4px;
+        }
+
+        .e-appointment .custom-event span {
+            overflow-x: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .e-appointment .astro-time-midday {
+            background-color: rgba(19, 184, 135, 0.16) !important;
+            border-left: 6px solid #13B887 !important;
+            color: #13B887;
+        }
+
+        .e-appointment .astro-time-sunrise {
+            background-color: rgba(21, 170, 191, 0.16) !important;
+            border-left: 6px solid #15AABF !important;
+            color: #15AABF;
+        }
+
+        .e-appointment .astro-time-sunset {
+            background-color: rgba(229, 72, 128, 0.16) !important;
+            border-left: 6px solid #E54880 !important;
+            color: #E54880;
+        }
 </style>
 
 
@@ -55,36 +128,26 @@
     <SfSchedule TValue="Appointment" WorkDays="@_workDays" AllowDragAndDrop="false" AllowResizing="false" Width="100%" Height="100%" ShowHeaderBar="false" @bind-SelectedDate="@SelectedDate" @bind-CurrentView="@CurrentView">
         <ScheduleEvents TValue="Appointment"></ScheduleEvents>
         <ScheduleWorkHours Highlight="true" Start="00:00" End="11:59"></ScheduleWorkHours>
+        <ScheduleTemplates>
+            <DateHeaderTemplate Context="template">
+                @{ var holiday = GetHoliday(template.Date);}
+                <div class="header-template">
+                    <div class="day-block @((holiday != null ? "holiday" : ""))">@($"{template.Date:ddd}.")</div>
+                    <div class="info-block">
+                        <span>@template.Date.ToString("dd")</span>
+                        <span>@holiday?.Name</span>
+                    </div>
+                </div>
+            </DateHeaderTemplate>
+        </ScheduleTemplates>
         <ScheduleViews>
-            <ScheduleView Option="View.Day">
-                <EventTemplate>
-                    @{
-                        var appointment = (context as Appointment);
-                        <div class="custom-event">
-                            @appointment.Subject
-                        </div>
-                    }
-                </EventTemplate>
-            </ScheduleView>
-            <ScheduleView Option="View.Week">
-                <EventTemplate>
-                    @{
-                        var appointment = (context as Appointment);
-                        <div class="custom-event @(appointment.StartTime.Hour == 12 ? "astro-time" : "")">
-                            @if (appointment.StartTime.Hour == 12)
-                            {
-                                <img src="images/midday.svg" />
-                            }
-                            @appointment.Subject
-                        </div>
-                    }
-                </EventTemplate>
-            </ScheduleView>
+            <ScheduleView Option="View.Day"></ScheduleView>
+            <ScheduleView Option="View.Week"></ScheduleView>
             <ScheduleView Option="View.Month" MaxEventsPerRow="5">
                 <CellHeaderTemplate Context="template">
                     @{ var holiday = GetHoliday(template.Date); }
                     <div class="month-day-header @(holiday != null ? "holiday": "")">
-                        <span class="@(template.Date == DateTime.Now.Date ? "currentdate" : "")" >@template.Date.Day</span>
+                        <span class="@(template.Date == DateTime.Now.Date ? "currentdate" : "")">@template.Date.Day</span>
                         <span>@holiday?.Name</span>
                     </div>
                 </CellHeaderTemplate>
@@ -124,7 +187,21 @@
 
         <ScheduleTimeScale Enable="true" Interval="60" SlotCount="4"></ScheduleTimeScale>
 
-        <ScheduleEventSettings DataSource="AppointmentsData"></ScheduleEventSettings>
+        <ScheduleEventSettings DataSource="AppointmentsData">
+            <Template>
+                @{
+                    var appointment = (context as Appointment);
+                    var data = GetDataForAstroTime(appointment.StartTime.Hour, appointment.StartTime);
+                    <div class="custom-event @(data.HasValue ? $"astro-time-{data.Value.label}" : "")">
+                        @if (data.HasValue)
+                        {
+                            <img src="@($"images/{data.Value.label}.svg")" />
+                        }
+                        <span>@(data.HasValue ? $"At {data.Value.label}" : appointment.Subject) </span>
+                    </div>
+                }
+            </Template>
+        </ScheduleEventSettings>
     </SfSchedule>
 </div>
 
@@ -145,6 +222,18 @@
     [Parameter]
     public List<Holiday> Holidays { get; set; }
 
+
+    public (string label, TimeSpan difference)? GetDataForAstroTime(int hour, DateTime eventDate)
+    {
+        var difference = eventDate.Subtract(new DateTime(eventDate.Year, eventDate.Month, eventDate.Day, eventDate.Hour, 0, 0));
+        return (hour) switch
+        {
+            6 => ("sunrise", difference),
+            12 => ("midday", difference),
+            18 => ("sunset", difference),
+            _ => null
+        };
+    }
 
 
 
