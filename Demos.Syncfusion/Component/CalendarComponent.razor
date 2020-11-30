@@ -41,6 +41,17 @@
         color: unset;
     }
 
+    .e-schedule .e-vertical-view .e-alternate-cells {
+        border-bottom: none !important;
+    }
+
+    .e-schedule .e-vertical-view .e-work-cells:hover {
+        background: unset !important;
+    }
+
+
+  
+
 
     .e-schedule .e-vertical-view .e-header-cells {
         padding: 0px;
@@ -106,28 +117,28 @@
         .e-appointment .astro-time-midday {
             background-color: rgba(19, 184, 135, 0.16) !important;
             border-left: 6px solid #13B887 !important;
-            color: #13B887;
+            color: #13B887 !important;
         }
 
         .e-appointment .astro-time-sunrise {
             background-color: rgba(21, 170, 191, 0.16) !important;
             border-left: 6px solid #15AABF !important;
-            color: #15AABF;
+            color: #15AABF !important;
         }
 
         .e-appointment .astro-time-sunset {
             background-color: rgba(229, 72, 128, 0.16) !important;
             border-left: 6px solid #E54880 !important;
-            color: #E54880;
+            color: #E54880 !important;
         }
 </style>
 
 
 <div class="schedule-container">
 
-    <SfSchedule TValue="Appointment" WorkDays="@_workDays" AllowDragAndDrop="false" AllowResizing="false" Width="100%" Height="100%" ShowHeaderBar="false" @bind-SelectedDate="@SelectedDate" @bind-CurrentView="@CurrentView">
+    <SfSchedule TValue="Appointment" WorkDays="@_workDays"  AllowDragAndDrop="false" AllowResizing="false" Width="100%" Height="100%" ShowHeaderBar="false" @bind-SelectedDate="@SelectedDate" @bind-CurrentView="@CurrentView">
         <ScheduleEvents TValue="Appointment"></ScheduleEvents>
-        <ScheduleWorkHours Highlight="true" Start="00:00" End="11:59"></ScheduleWorkHours>
+        <ScheduleWorkHours Highlight="true" Start="00:00" End="23:59"></ScheduleWorkHours>
         <ScheduleTemplates>
             <DateHeaderTemplate Context="template">
                 @{ var holiday = GetHoliday(template.Date);}
@@ -185,7 +196,7 @@
             </ScheduleView>
         </ScheduleViews>
 
-        <ScheduleTimeScale Enable="true" Interval="60" SlotCount="4"></ScheduleTimeScale>
+        <ScheduleTimeScale Enable="true" Interval="60" SlotCount="3"  ></ScheduleTimeScale>
 
         <ScheduleEventSettings DataSource="AppointmentsData">
             <Template>
